@@ -2,6 +2,7 @@ namespace StupidChessBase.Data.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -38,8 +39,20 @@ namespace StupidChessBase.Data.Migrations
                 CreateUser(context, "ani@abv.bg", "123");
                 CreateUser(context, "vladi@abv.bg", "123");
                 CreateUser(context, "ceco@abv.bg", "123");
+
+                CreateCountries(context);
             }
 
+        }
+
+        private void CreateCountries(ApplicationDbContext context)
+        {
+            context.Countries.Add(new Country(1, "Bulgaria"));
+            context.Countries.Add(new Country(2, "Spain"));
+            context.Countries.Add(new Country(3, "Malta"));
+            context.Countries.Add(new Country(4, "United Kingdom"));
+            context.Countries.Add(new Country(5, "USA"));
+            context.Countries.Add(new Country(6, "Germany"));
         }
 
         private void CreateUser(ApplicationDbContext context, string email, string password)
