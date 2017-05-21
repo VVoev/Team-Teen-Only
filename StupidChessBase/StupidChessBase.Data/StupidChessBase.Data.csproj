@@ -60,6 +60,8 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Migrations\DbMigrationsConfig.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Tournament.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
