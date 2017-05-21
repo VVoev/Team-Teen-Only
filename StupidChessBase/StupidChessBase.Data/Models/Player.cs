@@ -14,7 +14,7 @@ namespace StupidChessBase.Data.Models
         private IEnumerable<int> gameIds;
         private int playerId;
         private int countryId;
-        private int coachId;
+        private int? coachId;
         private string firstName;
         private string lastName;
         private DateTime bornYear;
@@ -33,7 +33,7 @@ namespace StupidChessBase.Data.Models
             int wins,
             int loses,
             int draws,
-            int? coachId = null,
+            int? coachId,
             bool isMale = true,
             int rating = 0)
         {
@@ -97,7 +97,7 @@ namespace StupidChessBase.Data.Models
         }
 
         [ForeignKey("Player")]
-        public int CoachId
+        public int? CoachId
         {
             get
             {
