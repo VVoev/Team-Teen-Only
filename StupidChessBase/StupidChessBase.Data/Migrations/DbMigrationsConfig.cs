@@ -33,6 +33,7 @@ namespace StupidChessBase.Data.Migrations
 
             if (!context.Users.Any())
             {
+                //Asp.Net Users
                 CreateUser(context, "vlado@abv.bg", "123");
                 CreateUser(context, "test@abv.bg", "123");
                 CreateUser(context, "kiro@abv.bg", "123");
@@ -42,8 +43,14 @@ namespace StupidChessBase.Data.Migrations
 
                 CreateCountries(context);
                 CreateTournaments(context);
+                CreatePlayers(context);
             }
 
+        }
+
+        private void CreatePlayers(ApplicationDbContext context)
+        {
+            throw new NotImplementedException();
         }
 
         private void CreateCountries(ApplicationDbContext context)
@@ -87,9 +94,11 @@ namespace StupidChessBase.Data.Migrations
             context.Tournaments.Add(new Tournament(1, "Malta Tournament", new DateTime(2000, 5, 1),2));
             context.Tournaments.Add(new Tournament(2, "Bulgaria Tournament", new DateTime(1995, 5, 1),2));
             context.Tournaments.Add(new Tournament(3, "Usa Tournament", new DateTime(1990, 5, 1),2));
-            context.Tournaments.Add(new Tournament(4, "United Kingdom Tournament", new DateTime(2000, 5, 1),2));
-            context.Tournaments.Add(new Tournament(5, "Germany Tournament", new DateTime(2000, 5, 1),2));
-            context.Tournaments.Add(new Tournament(6, "France Tournament", new DateTime(2000, 5, 1),2));
+            context.Tournaments.Add(new Tournament(4, "United Kingdom Tournament", new DateTime(1999, 5, 1),2));
+            context.Tournaments.Add(new Tournament(5, "Germany Tournament", new DateTime(2015, 5, 1),2));
+            context.Tournaments.Add(new Tournament(6, "France Tournament", new DateTime(2020, 5, 1),2));
         }
+
+       
     }
 }
