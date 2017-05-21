@@ -41,6 +41,7 @@ namespace StupidChessBase.Data.Migrations
                 CreateUser(context, "ceco@abv.bg", "123");
 
                 CreateCountries(context);
+                CreateTournaments(context);
             }
 
         }
@@ -79,6 +80,16 @@ namespace StupidChessBase.Data.Migrations
                 throw new Exception(string.Join("; ", userCreateResult.Errors));
             }
 
+        }
+
+        private void CreateTournaments(ApplicationDbContext context)
+        {
+            context.Tournaments.Add(new Tournament(1, "Malta Tournament", new DateTime(2000, 5, 1),2));
+            context.Tournaments.Add(new Tournament(2, "Bulgaria Tournament", new DateTime(1995, 5, 1),2));
+            context.Tournaments.Add(new Tournament(3, "Usa Tournament", new DateTime(1990, 5, 1),2));
+            context.Tournaments.Add(new Tournament(4, "United Kingdom Tournament", new DateTime(2000, 5, 1),2));
+            context.Tournaments.Add(new Tournament(5, "Germany Tournament", new DateTime(2000, 5, 1),2));
+            context.Tournaments.Add(new Tournament(6, "France Tournament", new DateTime(2000, 5, 1),2));
         }
     }
 }

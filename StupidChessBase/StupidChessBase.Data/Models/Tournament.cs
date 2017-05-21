@@ -10,19 +10,16 @@ namespace StupidChessBase.Data.Models
 {
     public class Tournament
     {
-        private int tournamentId;
         private DateTime date;
         private int rounds;
         private string title;
 
         public Tournament(int tournamentId,
-            IEnumerable<int> playersId,
             string title,
             DateTime date,
             int rounds)
         {
             this.TournamentId = tournamentId;
-            this.PlayersId = playersId;
             this.Title = title;
             this.Date = date;
             this.Rounds = rounds;
