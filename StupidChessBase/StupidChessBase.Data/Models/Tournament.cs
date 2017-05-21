@@ -26,21 +26,10 @@ namespace StupidChessBase.Data.Models
             this.Title = title;
             this.Date = date;
             this.Rounds = rounds;
-        }    
+        }
 
         [Key]
-        public int TournamentId
-        {
-            get
-            {
-                return tournamentId;
-            }
-
-            set
-            {
-                tournamentId = value;
-            }
-        }
+        public int TournamentId { get; set; }
 
         public IEnumerable<int> PlayersId { get; set; }
 

@@ -23,8 +23,8 @@ namespace StupidChessBase.Data.Models
         public Player(int playerId,
             IEnumerable<int> gamesId,
             int countryId,
-            string firstName, 
-            string lastName, 
+            string firstName,
+            string lastName,
             DateTime bornYear,
             int wins,
             int loses,
@@ -54,7 +54,7 @@ namespace StupidChessBase.Data.Models
         public IEnumerable<int> GamesId { get; set; }
 
         [ForeignKey("GamesId")]
-        public virtual IEnumerable<Game> Games { get; set; }
+        public virtual IEnumerable<PlayerGame> PlayersGames { get; set; }
 
         public int CountryId { get; set; }
 
