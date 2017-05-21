@@ -10,27 +10,23 @@ namespace StupidChessBase.Data.Models
 {
     public class Tournament
     {
-        private int countryId;
+        private int tournamentId;
         private DateTime date;
-        private IEnumerable<int> playerIds;
         private int rounds;
         private string title;
-        private int tournamentId;
 
         public Tournament(int tournamentId,
-            int countryId,
-            IEnumerable<int> playerIds,
+            IEnumerable<int> playersId,
             string title,
             DateTime date,
             int rounds)
         {
             this.TournamentId = tournamentId;
-            this.CountryId = countryId;
-            this.PlayerIds = playerIds;
+            this.PlayersId = playersId;
             this.Title = title;
             this.Date = date;
             this.Rounds = rounds;
-        }
+        }    
 
         [Key]
         public int TournamentId
@@ -46,33 +42,10 @@ namespace StupidChessBase.Data.Models
             }
         }
 
-        [ForeignKey("Country")]
-        public int CountryId
-        {
-            get
-            {
-                return countryId;
-            }
+        public IEnumerable<int> PlayersId { get; set; }
 
-            set
-            {
-                countryId = value;
-            }
-        }
-
-        [ForeignKey("Player")]
-        public IEnumerable<int> PlayerIds
-        {
-            get
-            {
-                return playerIds;
-            }
-
-            set
-            {
-                playerIds = value;
-            }
-        }
+        [ForeignKey("PlayersId")]
+        public virtual IEnumerable<Player> Players { get; set; }
 
         [Required]
         public DateTime Date

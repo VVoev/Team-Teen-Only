@@ -11,24 +11,22 @@ namespace StupidChessBase.Data.Models
 {
     public class Game
     {
-        private int blackId;
-        private DateTime date;
         private int gameId;
+        //private Player black;
+        private DateTime date;
         private Result result;
-        private int tournamentId;
-        private int whiteId;
 
         public Game(int gameId,
             int tournamentId,
             int whiteId,
-            int blackId,
+            // Player black,
             DateTime date,
             Result result)
         {
             this.GameId = gameId;
             this.TournamentId = tournamentId;
             this.WhiteId = whiteId;
-            this.BlackId = blackId;
+            //this.Black = black;
             this.Date = date;
             this.Result = result;
         }
@@ -47,47 +45,29 @@ namespace StupidChessBase.Data.Models
             }
         }
 
-        [ForeignKey("Tournament")]
-        public int TournamentId
-        {
-            get
-            {
-                return tournamentId;
-            }
+        public int TournamentId { get; set; }
 
-            set
-            {
-                tournamentId = value;
-            }
-        }
+        [ForeignKey("TournamentId")]
+        public virtual Tournament Tournament { get; set; }
 
-        [ForeignKey("Player")]
-        public int WhiteId
-        {
-            get
-            {
-                return whiteId;
-            }
+        public int WhiteId { get; set; }
 
-            set
-            {
-                whiteId = value;
-            }
-        }
+        [ForeignKey("WhiteId")]
+        public virtual Player White { get; set; }
 
-        [ForeignKey("Player")]
-        public int BlackId
-        {
-            get
-            {
-                return blackId;
-            }
+        //[ForeignKey("Player")]
+        //public virtual Player Black
+        //{
+        //    get
+        //    {
+        //        return black;
+        //    }
 
-            set
-            {
-                blackId = value;
-            }
-        }
+        //    set
+        //    {
+        //        black = value;
+        //    }
+        //}
 
         [Required]
         public DateTime Date

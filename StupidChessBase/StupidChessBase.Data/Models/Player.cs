@@ -11,10 +11,6 @@ namespace StupidChessBase.Data.Models
 {
     public class Player
     {
-        private IEnumerable<int> gameIds;
-        private int playerId;
-        private int countryId;
-        private int? coachId;
         private string firstName;
         private string lastName;
         private DateTime bornYear;
@@ -24,8 +20,8 @@ namespace StupidChessBase.Data.Models
         private bool isMale;
         private int rating;
 
-        public Player(int playerId, 
-            IEnumerable<int> gameIds,
+        public Player(int playerId,
+            IEnumerable<int> gamesId,
             int countryId,
             string firstName, 
             string lastName, 
@@ -33,12 +29,12 @@ namespace StupidChessBase.Data.Models
             int wins,
             int loses,
             int draws,
-            int? coachId,
+            int coachId,
             bool isMale = true,
             int rating = 0)
         {
             this.PlayerId = playerId;
-            this.GameIds = gameIds;
+            this.GamesId = gamesId;
             this.CountryId = countryId;
             this.CoachId = coachId;
             this.FirstName = firstName;
@@ -53,62 +49,22 @@ namespace StupidChessBase.Data.Models
         }
 
         [Key]
-        public int PlayerId
-        {
-            get
-            {
-                return playerId;
-            }
+        public int PlayerId { get; set; }
 
-            set
-            {
-                playerId = value;
-            }
-        }
+        public IEnumerable<int> GamesId { get; set; }
 
-        [ForeignKey("Game")]
-        [Required]
-        public IEnumerable<int> GameIds
-        {
-            get
-            {
-                return gameIds;
-            }
+        [ForeignKey("GamesId")]
+        public virtual IEnumerable<Game> Games { get; set; }
 
-            set
-            {
-                gameIds = value;
-            }
-        }
+        public int CountryId { get; set; }
 
-        [ForeignKey("Country")]
-        [Required]
-        public int CountryId
-        {
-            get
-            {
-                return countryId;
-            }
+        [ForeignKey("CountryId")]
+        public virtual Country Country { get; set; }
 
-            set
-            {
-                countryId = value;
-            }
-        }
+        public int CoachId { get; set; }
 
-        [ForeignKey("Player")]
-        public int? CoachId
-        {
-            get
-            {
-                return coachId;
-            }
-
-            set
-            {
-                coachId = value;
-            }
-        }
+        [ForeignKey("CoachId")]
+        public virtual Player Coach { get; set; }
 
         [Required]
         public string FirstName
