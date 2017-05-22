@@ -22,3 +22,8 @@ select,
 textarea {
     max-width: 280px;
 }
+/*Footer*/
+.secretInfo{
+    display:inline-block;
+    padding-left:130px;
+}
