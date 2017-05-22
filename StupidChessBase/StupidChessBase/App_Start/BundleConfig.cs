@@ -23,9 +23,19 @@ namespace StupidChessBase
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/chess").Include(
+                      "~/Scripts/chess.js",                      
+                      "~/Scripts/chessboard-0.3.0.min.js",
+                      "~/Scripts/InitializeChess.js"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/packages").Include(
+                "~/Scripts/require.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/chessboard-0.3.0.css"));
         }
     }
 }

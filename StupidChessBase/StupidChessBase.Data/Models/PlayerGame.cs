@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StupidChessBase.Data.Models
 {
-    public class PlayerGame : IPlayerGame
+    public class PlayerGame
     {
         public PlayerGame(int playerId, int gameId)
         {
@@ -24,7 +24,7 @@ namespace StupidChessBase.Data.Models
         [Column(Order = 2)]
         public int GameId { get; set; }
 
-        public virtual IPlayer Player { get; set; }
-        public virtual IGame Game { get; set; }
+        public virtual Player Player { get; set; }
+        public virtual Game Game { get; set; }
     }
 }

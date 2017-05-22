@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StupidChessBase.Data.Models
 {
-    public class Player : IPlayer
+    public class Player
     {
         private string firstName;
         private string lastName;
@@ -54,17 +54,17 @@ namespace StupidChessBase.Data.Models
         public IEnumerable<int> GamesId { get; set; }
 
         [ForeignKey("GamesId")]
-        public virtual IEnumerable<IPlayerGame> PlayersGames { get; set; }
+        public virtual IEnumerable<PlayerGame> PlayersGames { get; set; }
 
         public int CountryId { get; set; }
 
         [ForeignKey("CountryId")]
-        public virtual ICountry Country { get; set; }
+        public virtual Country Country { get; set; }
 
         public int CoachId { get; set; }
 
         [ForeignKey("CoachId")]
-        public virtual IPlayer Coach { get; set; }
+        public virtual Player Coach { get; set; }
 
         [Required]
         public string FirstName

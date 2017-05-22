@@ -33,6 +33,8 @@
  * https://github.com/jhlywa/chess.js/blob/master/LICENSE
  */
 
+
+
 var Chess = function (fen) {
 
     /* jshint indent: false */

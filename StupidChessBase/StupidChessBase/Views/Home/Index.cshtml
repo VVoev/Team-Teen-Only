@@ -4,23 +4,106 @@
 
 <div class="jumbotron">
     <h1>Stupid ChessBase</h1>
-    <p class="lead">Stupid ChessBase is a future best application for chess ranklists, players, games and tournaments </p>
+    <p class="lead">Future best chess database application</p>
     <p><a href="~/Account/Register" class="btn btn-primary btn-lg">Getting Started &raquo;</a></p>
 </div>
 
 <div class="row">
+    <div id="game-of-the-day" class="col-md-4">
+        <h2 id="game-of-the-day-label">Game of the day</h2>
+    </div>
     <div class="col-md-4">
-        <h2>Game of the day</h2>
-        TODO
+        <div id="current-tournaments" class="pull-right">
+            <h2>Current tournaments</h2>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tournament</th>
+                        <th>Place</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><a class="btn btn-default" href="">Show more tournaments&raquo;</a></p>
+        </div>
     </div>
-<div class="col-md-4">
-    <h2>Current biggest tournaments</h2>
-    <p>TODO</p>
-    <p><a class="btn btn-default" href="">Show more tournaments&raquo;</a></p>
+    <div class="col-md-4">
+        <div id="top-6-players" class="pull-right">
+            <h2 id="top-6-players-label">Top 6 players</h2>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Player</th>
+                        <th>Elo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Magnus Carlsen</td>
+                        <td>2832</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Wesley So</td>
+                        <td>2815</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Vladimir Kramnik</td>
+                        <td>2811</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Fabiano Caruana</td>
+                        <td>2802</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Maxime Vachier-Lagrave</td>
+                        <td>2795</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Levon Aronian</td>
+                        <td>2789</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><a class="btn btn-default" href="">Show more players&raquo;</a></p>
+        </div>
+    </div>
 </div>
-<div class="col-md-4">
-    <h2>Top 10 players by rating for @DateTime.Now.Month/@DateTime.Now.Year</h2>
-        <p>TODO</p>
-        <p><a class="btn btn-default" href="">Show more players&raquo;</a></p>
-    </div>
-    </div>

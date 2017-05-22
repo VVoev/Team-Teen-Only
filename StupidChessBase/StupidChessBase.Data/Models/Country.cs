@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StupidChessBase.Data.Models
 {
-    public class Country : ICountry
+    public class Country
     {
 
         public Country(int countryId, string name)

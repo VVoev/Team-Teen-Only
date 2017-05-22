@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StupidChessBase.Data.Models
 {
-    public class Tournament : ITournament
+    public class Tournament
     {
         private DateTime date;
         private int rounds;
@@ -31,7 +31,7 @@ namespace StupidChessBase.Data.Models
         public IEnumerable<int> PlayersId { get; set; }
 
         [ForeignKey("PlayersId")]
-        public virtual IEnumerable<IPlayer> Players { get; set; }
+        public virtual IEnumerable<Player> Players { get; set; }
 
         [Required]
         public DateTime Date
