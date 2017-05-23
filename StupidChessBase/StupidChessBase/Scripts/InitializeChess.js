@@ -30,20 +30,20 @@ var board,
 game.load_pgn(pgn.join('\n'));
 
 var moves = game.history()
-console.log(moves);
 
 var chess1 = new Chess();
 
 var makeMove = function () {
     chess1.move(moves[moveCounter]);
     board.position(chess1.fen());
-    console.log(moveCounter);
+
     if (moveCounter === moves.length) {
         setTimeout(function () {
             moveCounter = -1;
             chess1 = new Chess();
         }, millisecondsToWait);        
     }
+
     moveCounter++;
     window.setTimeout(makeMove, 750);
 };

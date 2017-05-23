@@ -50,7 +50,8 @@ namespace StupidChessBase.Data.Migrations
 
         private void CreatePlayers(ApplicationDbContext context)
         {
-            // throw new NotImplementedException();        }
+            // throw new NotImplementedException();
+        }
 
         private void CreateCountries(ApplicationDbContext context)
         {
