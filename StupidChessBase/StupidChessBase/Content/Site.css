@@ -26,7 +26,6 @@ textarea {
 #game-of-the-day-label {
     text-align: center;
 }
-
 #top-10-players-label {
     text-align: center;
 }
@@ -39,8 +38,12 @@ textarea {
     height: 356px;
 }
 
-/*Footer*/
-.secretInfo {
-    display: inline-block;
-    padding-left: 130px;
+.footer{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
 }
