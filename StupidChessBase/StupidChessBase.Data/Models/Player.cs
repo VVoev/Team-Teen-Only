@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StupidChessBase.Data.Models
 {
@@ -29,7 +25,7 @@ namespace StupidChessBase.Data.Models
             int wins,
             int loses,
             int draws,
-            int coachId,
+            int? coachId = null,
             bool isMale = true,
             int rating = 0)
         {
@@ -61,7 +57,7 @@ namespace StupidChessBase.Data.Models
         [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
 
-        public int CoachId { get; set; }
+        public int? CoachId { get; set; }
 
         [ForeignKey("CoachId")]
         public virtual Player Coach { get; set; }

@@ -1,6 +1,5 @@
 ﻿var chessBoardElement = document.createElement('DIV')
 chessBoardElement.setAttribute('id', 'board');
-chessBoardElement.style.width = "258px";
 
 document.getElementById('game-of-the-day').appendChild(chessBoardElement);
 

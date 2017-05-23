@@ -9,7 +9,7 @@ namespace StupidChessBase.Data.Enums
     public enum Result
     {
         Draw = 0,
-        Win = 1,
-        Lose = 2
+        White = 1,
+        Black = 2
     }
 }

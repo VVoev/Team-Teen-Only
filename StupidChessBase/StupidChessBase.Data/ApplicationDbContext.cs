@@ -13,7 +13,7 @@ namespace StupidChessBase.Data
         public IDbSet<Tournament> Tournaments { get; set; }
         public IDbSet<Country> Countries { get; set; }
         public IDbSet<Game> Games { get; set; }
-        public IDbSet<PlayerGame> PlayerGame { get; set; }
+        public IDbSet<PlayerGame> PlayerGames { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
