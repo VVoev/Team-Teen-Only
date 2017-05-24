@@ -44,6 +44,8 @@ namespace StupidChessBase.Data.Migrations
                 CreateCountries(context);
                 CreateTournaments(context);
                 CreatePlayers(context);
+                CreateGames(context);
+                CreatePlayerGames(context);
             }
 
         }
