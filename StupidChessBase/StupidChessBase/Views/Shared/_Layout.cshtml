@@ -27,6 +27,11 @@
                     <li>@Html.ActionLink("Ranklists", "Ranklist", "Player")</li>
                     <li>@Html.ActionLink("Players", "Players", "Player")</li>
 
+                    <li>@Html.ActionLink("Tournaments", "Tournaments", "Tournament", new { @class = "dropdown-toggle" })<span class="caret"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="#/Shop">Add new tournament</a></li>
+                        </ul></li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -37,9 +42,9 @@
         <hr />
         <footer class="footer">
             <p>&copy; @DateTime.Now.Year - My Stupid ChessBase</p>
-			<div>
+            <div>
                 <a class="col-md-4" href="https://github.com/VVoev/Team-Teen-Only">
-                    Link to the Github 
+                    Link to the Github
                 </a>
                 <a class="col-md-4" href="https://9gag.com/gag/a0pbDeX">
                     Unit Tests
