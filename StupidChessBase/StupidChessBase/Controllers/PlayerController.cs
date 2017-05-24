@@ -9,9 +9,9 @@ namespace StupidChessBase.Controllers
 {
     public class PlayerController : BaseController
     {
-        public ActionResult Players()
+        public ActionResult SortedPlayers()
         {
-            var players = this.db.Players.OrderBy(x => x.Rating).Select(x => new PlayerViewModel()
+            var players = this.db.Players.OrderByDescending(x => x.Rating).Select(x => new PlayerViewModel()
             {
                 FullName = x.FirstName + " " + x.LastName,
                 Rating = x.Rating,
@@ -25,5 +25,23 @@ namespace StupidChessBase.Controllers
                 PlayersData = players
             });
         }
+
+        public ActionResult Players()
+        {
+            var players = this.db.Players.OrderByDescending(x => x.Rating).Select(x => new PlayerViewModel()
+            {
+               //Todo
+            });
+
+            return View(new PlayersViewModel()
+            {
+                PlayersData = players
+            });
+        }
+
+
+
+
+
     }
 }
