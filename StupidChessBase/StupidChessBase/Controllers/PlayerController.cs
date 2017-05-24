@@ -1,10 +1,7 @@
-﻿using StupidChessBase.Data;
-using StupidChessBase.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using StupidChessBase.Models;
+
 
 namespace StupidChessBase.Controllers
 {
@@ -33,7 +30,7 @@ namespace StupidChessBase.Controllers
             var players = this.db.Players.OrderByDescending(x => x.LastName)
                 .Select(x => new PlayerViewModel()
                 {
-                    FullName = x.FirstName + x.LastName,
+                    FullName = x.FirstName + " " + x.LastName,
                     Rating = x.Rating,
                     Country = x.Country.Name
             });
