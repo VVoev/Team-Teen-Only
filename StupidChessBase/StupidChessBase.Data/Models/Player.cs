@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace StupidChessBase.Data.Models
 {
@@ -172,5 +173,15 @@ namespace StupidChessBase.Data.Models
                 rating = value;
             }
         }
+
+        //public string GetCountryById(int id, ApplicationDbContext db)
+        //{
+        //    id = this.CountryId;
+        //
+        //    var country = db.Countries
+        //        .FirstOrDefault(x => x.CountryId == id);
+        //
+        //    return country.Name;           
+        //}
     }
 }

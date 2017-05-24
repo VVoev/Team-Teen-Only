@@ -8,7 +8,7 @@ namespace StupidChessBase.Tests.Controllers.HomeControllerTests
     public class Index_Should
     {
         [Test]
-        public void ReturnView_WhenMethodIsExecuted()
+        public void InitializeView_WhenHomeControllerIsCreated()
         {
             // Arrange
             var controller = new HomeController();

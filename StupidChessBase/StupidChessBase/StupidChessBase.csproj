@@ -280,6 +280,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Player\Players.cshtml" />
+    <Content Include="Views\Player\Ranklist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StupidChessBase.Data\StupidChessBase.Data.csproj">

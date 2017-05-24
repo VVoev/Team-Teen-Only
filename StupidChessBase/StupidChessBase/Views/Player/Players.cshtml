@@ -16,11 +16,9 @@
         <thead>
             <tr>
                 <th class="col-xs-1">#</th>
-                <th class="col-xs-3">Player</th>
+                <th class="col-xs-6">Player</th>
                 <th class="col-xs-2">Rating</th>
-                <th class="col-xs-2">Wins</th>
-                <th class="col-xs-2">Loses</th>
-                <th class="col-xs-2">Draws</th>
+                <th class="col-xs-4">Country</th>
             </tr>
         </thead>
         @{int counter = 1;}
@@ -31,9 +29,7 @@
                     <th scope="row">@counter</th>
                     <td>@player.FullName</td>
                     <td>@player.Rating</td>
-                    <td>@player.Wins</td>
-                    <td>@player.Loses</td>
-                    <td>@player.Draws</td>
+                    <td>@player.Country</td>
                 </tr>
                 @{ counter++;}
             </tbody>

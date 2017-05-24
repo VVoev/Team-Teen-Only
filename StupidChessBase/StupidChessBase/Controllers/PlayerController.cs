@@ -1,4 +1,5 @@
-﻿using StupidChessBase.Models;
+﻿using StupidChessBase.Data;
+using StupidChessBase.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,13 @@ namespace StupidChessBase.Controllers
 {
     public class PlayerController : BaseController
     {
-        public ActionResult SortedPlayers()
+        public ActionResult Ranklist()
         {
             var players = this.db.Players.OrderByDescending(x => x.Rating).Select(x => new PlayerViewModel()
             {
                 FullName = x.FirstName + " " + x.LastName,
                 Rating = x.Rating,
+                Country = x.Country.Name,
                 Wins = x.Wins,
                 Loses = x.Loses,
                 Draws = x.Draws
@@ -28,9 +30,12 @@ namespace StupidChessBase.Controllers
 
         public ActionResult Players()
         {
-            var players = this.db.Players.OrderByDescending(x => x.Rating).Select(x => new PlayerViewModel()
-            {
-               //Todo
+            var players = this.db.Players.OrderByDescending(x => x.LastName)
+                .Select(x => new PlayerViewModel()
+                {
+                    FullName = x.FirstName + x.LastName,
+                    Rating = x.Rating,
+                    Country = x.Country.Name
             });
 
             return View(new PlayersViewModel()
@@ -38,10 +43,5 @@ namespace StupidChessBase.Controllers
                 PlayersData = players
             });
         }
-
-
-
-
-
     }
 }
