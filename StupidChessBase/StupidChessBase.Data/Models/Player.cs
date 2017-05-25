@@ -41,7 +41,6 @@ namespace StupidChessBase.Data.Models
             this.Draws = draws;
             this.IsMale = isMale;
             this.Rating = rating;
-
         }
 
         [Key]

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using StupidChessBase.Models;
+using StupidChessBase.Data.Models;
 
 namespace StupidChessBase.Controllers
 {
@@ -33,16 +34,26 @@ namespace StupidChessBase.Controllers
             });
         }
 
-        //TODO: add user credentials
-        //public ActionResult AddTournament(TournamentViewModel model)
-        //{
-            //if (model != null && this.ModelState.IsValid)
-            //{
-            //    var tournament = new Tournament(7, model.Name, model.Date, model.Rounds, model.Description);
-            //    this.db.Tournaments.Add(tournament);
-            //    // TODO: Display notification when event is created
-            //}
-            //return this.View(model);
-        //}
+        [HttpGet]
+        public ActionResult AddTournament()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddTournament(AddTournamentModel model)
+        {
+            if (model != null && this.ModelState.IsValid)
+            {
+                var tournament = new Tournament(10, model.Name, model.StartDate, model.EndDate, model.Rounds, model.Description);
+                this.db.Tournaments.Add(tournament);
+                this.db.SaveChanges();
+
+                return this.RedirectToAction("Tournaments");
+            }
+
+            return this.View(model);
+        }
     }
 }
