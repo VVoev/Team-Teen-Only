@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StupidChessBase.Data.Models
 {
     public class Tournament
     {
-        private DateTime date;
+        private DateTime startDate;
+        private DateTime endDate;
         private int rounds;
         private string title;
+        private string description;
 
         public Tournament(int tournamentId,
             string title,
-            DateTime date,
-            int rounds)
+            DateTime startDate,
+            DateTime endDate,
+            int rounds,
+            string description)
         {
             this.TournamentId = tournamentId;
             this.Title = title;
-            this.Date = date;
+            this.StartDate = startDate;
+            this.EndDate = endDate;
             this.Rounds = rounds;
+            this.Description = description;
         }
 
         [Key]
@@ -32,21 +35,7 @@ namespace StupidChessBase.Data.Models
 
         [ForeignKey("PlayersId")]
         public virtual IEnumerable<Player> Players { get; set; }
-
-        [Required]
-        public DateTime Date
-        {
-            get
-            {
-                return date;
-            }
-
-            set
-            {
-                date = value;
-            }
-        }
-
+       
         [Required]
         public int Rounds
         {
@@ -74,5 +63,49 @@ namespace StupidChessBase.Data.Models
                 title = value;
             }
         }
+
+        [Required]
+        public DateTime StartDate
+        {
+            get
+            {
+                return startDate;
+            }
+
+            set
+            {
+                startDate = value;
+            }
+        }
+
+        [Required]
+        public DateTime EndDate
+        {
+            get
+            {
+                return endDate;
+            }
+
+            set
+            {
+                endDate = value;
+            }
+        }
+
+        [Required]
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+
+            set
+            {
+                description = value;
+            }
+        }
+
+
     }
 }

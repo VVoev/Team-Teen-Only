@@ -27,11 +27,16 @@
                     <li>@Html.ActionLink("Ranklists", "Ranklist", "Player")</li>
                     <li>@Html.ActionLink("Players", "Players", "Player")</li>
 
-                    <li>@Html.ActionLink("Tournaments", "Tournaments", "Tournament", new { @class = "dropdown-toggle" })<span class="caret"></span>
-                        <ul class="dropdown-menu">
-                            <li><a href="#/Shop">Add new tournament</a></li>
-                        </ul></li>
-
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Tournaments
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Add tournament", "AddTournament", "Tournament")</li>
+                            <li>@Html.ActionLink("Show tournaments", "Tournaments", "Tournament")</li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

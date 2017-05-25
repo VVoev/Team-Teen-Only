@@ -1,41 +1,129 @@
-﻿@{
+﻿@model StupidChessBase.Models.UpcomingPassedTournamentsViewModel
+
+@{
     ViewBag.Title = "Tournaments";
 }
 
-<!DOCTYPE html>
+<h1 class="tournament-group-heading">Upcoming Tournaments</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-        <table class="table table-striped table-bordered table-responsive table-condensed">
-            <thead>
-                <tr>
-                    <th class="col-xs-1">#</th>
-                    <th class="col-xs-6">Tournament Name</th>
-                    <th class="col-xs-2">Date</th>
-                    <th class="col-xs-4">Rounds</th>
-                </tr>
-            </thead>
-            @{int counter = 1;}
-            @foreach (var tournament in Model.TournamentsData)
+<div class="row">
+    @if (Model.UpcomingTournaments.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Rounds</th>
+                <th>Description</th>
+            </tr>
+            @foreach (var upcomingTournament in Model.UpcomingTournaments)
             {
-                <tbody>
-                    <tr>
-                        <th scope="row">@counter</th>
-                        <td>@tournament.Name</td>
-                        <td>@tournament.Date</td>
-                        <td>@tournament.Rounds</td>
-                    </tr>
-                    @{ counter++;}
-                </tbody>
-                        }
+                <tr>
+                    <th>
+                        @upcomingTournament.Name
+                    </th>
+                    <td>
+                        @upcomingTournament.StartDate
+                    </td>
+                    <td>
+                        @upcomingTournament.EndDate
+                    </td>
+                    <td>
+                        @upcomingTournament.Rounds
+                    </td>
+                    <td>
+                        @upcomingTournament.Description
+                    </td>
+                </tr>
+
+            }
         </table>
-    </div>
-    @*First param - text, Second param - controller method name;  Third param - Controller name*@
-    <button>@Html.ActionLink("AddTournament", "AddTournament", "Tournament")</button>
-</body>
-</html>
+    }
+    else
+    {
+        <div>No Tournaments</div>
+    }
+</div>
+
+<h1 class="tournament-group-heading">Current Tournaments</h1>
+
+<div class="row">
+    @if (Model.CurrentTournaments.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Rounds</th>
+                <th>Description</th>
+            </tr>
+            @foreach (var currentTournament in Model.CurrentTournaments)
+            {
+                <tr>
+                    <th>
+                        @currentTournament.Name
+                    </th>
+                    <td>
+                        @currentTournament.StartDate
+                    </td>
+                    <td>
+                        @currentTournament.EndDate
+                    </td>
+                    <td>
+                        @currentTournament.Rounds
+                    </td>
+                    <td>
+                        @currentTournament.Description
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div>No Tournaments</div>
+    }
+</div>
+
+<h1 class="tournament-group-heading">Passed Tournaments</h1>
+
+<div class="row">
+    @if (Model.PassedTournaments.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Rounds</th>
+                <th>Description</th>
+            </tr>
+            @foreach (var passedTournament in Model.PassedTournaments)
+            {
+                <tr>
+                    <th>
+                        @passedTournament.Name
+                    </th>
+                    <td>
+                        @passedTournament.StartDate
+                    </td>
+                    <td>
+                        @passedTournament.EndDate
+                    </td>
+                    <td>
+                        @passedTournament.Rounds
+                    </td>
+                    <td>
+                        @passedTournament.Description
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <div>No Tournaments</div>
+    }
+</div>
