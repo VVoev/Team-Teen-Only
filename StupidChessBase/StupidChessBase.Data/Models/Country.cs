@@ -1,25 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace StupidChessBase.Data.Models
 {
     public class Country
     {
+        public int ID { get; set; }
 
-        public Country(int countryId, string name)
-        {
-            this.CountryId = countryId;
-            this.Name = name;
-        }
-
-        [Key]
-        public int CountryId { get; set; }
         public string Name { get; set; }
 
+        public virtual ICollection<Tournament> Tounaments { get; set; }
+
+        public virtual ICollection<Player> Players { get; set; }
     }
 }

@@ -3,6 +3,8 @@ namespace StupidChessBase.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Collections.Generic;
+
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
@@ -18,19 +20,6 @@ namespace StupidChessBase.Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
             if (!context.Users.Any())
             {
                 //Asp.Net Users
@@ -40,48 +29,69 @@ namespace StupidChessBase.Data.Migrations
                 CreateUser(context, "ani@abv.bg", "123");
                 CreateUser(context, "vladi@abv.bg", "123");
                 CreateUser(context, "ceco@abv.bg", "123");
-
-                CreateCountries(context);
-                CreateTournaments(context);
-                CreatePlayers(context);
-                CreateGames(context);
-                CreatePlayerGames(context);
             }
 
+            var countries = new List<Country>
+            {
+                new Country() { Name = "Bulgaria" },
+
+                new Country() { Name = "Spain" },
+
+                new Country() { Name = "Malta" },
+
+                new Country() { Name = "United Kingdom" },
+
+                new Country() { Name = "USA" },
+
+                new Country() { Name = "Germany" },
+
+                new Country() { Name = "Norway" },
+
+                new Country() { Name = "Russia" }
+            };
+
+            countries.ForEach(c => context.Countries.AddOrUpdate(n => n.Name, c));
+            context.SaveChanges();
+
+            var players = new List<Player>
+            {
+                new Player() { FirstName = "Magnus", LastName = "Carlsen", BornDate = new DateTime(1990, 11, 30), Gender = Gender.Male, Rating = 2832, CountryID = countries.Single(c => c.Name == "Norway").ID, Games = new List<Game>() },
+                new Player() { FirstName = "Wesley", LastName = "So", BornDate = new DateTime(1993, 10, 9), Gender = Gender.Male, Rating = 2815, CountryID = countries.Single(c => c.Name == "USA").ID, Games = new List<Game>() },
+                new Player() { FirstName = "Vladimir", LastName = "Kramnik", BornDate = new DateTime(1975, 6, 25), Gender = Gender.Male, Rating = 2811, CountryID = countries.Single(c => c.Name == "Russia").ID, Games = new List<Game>() }
+            };
+                       
+            var tournaments = new List<Tournament>
+            {
+                new Tournament() { Title = "Malta Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "Malta tournament", CountryID = countries.Single(c => c.Name == "Malta").ID, Players = new List<Player>() },
+            
+                new Tournament() { Title = "USA Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "USA tournament", CountryID = countries.Single(c => c.Name == "USA").ID, Players = new List<Player>() }
+            };
+
+            tournaments.ForEach(t => context.Tournaments.AddOrUpdate(tt => tt.Title, t));
+            context.SaveChanges();
+
+
+            var games = new List<Game>
+            {
+                new Game() { Date = new DateTime(2016, 6, 12), Result = Result.Black, TournamentID = tournaments.Single(t => t.Title == "Malta Tournament").ID, Players = new List<Player>(), Table = 1, Round = 1},
+                new Game() { Date = new DateTime(2016, 02, 15), Result = Result.White, TournamentID = tournaments.Single(t => t.Title == "USA Tournament").ID, Players = new List<Player>(), Table = 1, Round = 1 }
+            };
+
+            games.ForEach(g => context.Games.Add(g));
+            context.SaveChanges();
+
+            players[1].Games.Add(games[0]);
+            players[0].Games.Add(games[0]);
+
+            players[0].Games.Add(games[1]);
+            players[2].Games.Add(games[1]);
+
+            players.ForEach(p => context.Players.AddOrUpdate(l => l.LastName, p));
+            context.SaveChanges();
+
+            context.SaveChanges();
         }
 
-        private void CreatePlayers(ApplicationDbContext context)
-        {
-            context.Players.Add(new Player(1, new int[] { 1, 2 }, 7, "Magnus", "Carlsen", new DateTime(1990, 11, 30), 200, 1, 50, null, true, 2832));
-            context.Players.Add(new Player(2, new int[] { 1 }, 5, "Wesley", "So", new DateTime(1993, 10, 9), 200, 1, 50, null, true, 2815));
-            context.Players.Add(new Player(3, new int[] { 2 }, 8, "Vladimir", "Kramnik", new DateTime(1975, 6, 25), 200, 1, 50, null, true, 2811));
-        }
-
-        private void CreateGames(ApplicationDbContext context)
-        {
-            context.Games.Add(new Game(1, 1, new int[] { 2, 1 }, new DateTime(2016, 6, 12), Result.Black));
-            context.Games.Add(new Game(2, 2, new int[] { 1, 3 }, new DateTime(2016, 02, 15), Result.White));
-        }
-
-        private void CreatePlayerGames(ApplicationDbContext context)
-        {
-            context.PlayerGames.Add(new PlayerGame(1, 1));
-            context.PlayerGames.Add(new PlayerGame(2, 1));
-            context.PlayerGames.Add(new PlayerGame(1, 2));
-            context.PlayerGames.Add(new PlayerGame(3, 2));
-        }
-
-        private void CreateCountries(ApplicationDbContext context)
-        {
-            context.Countries.Add(new Country(1, "Bulgaria"));
-            context.Countries.Add(new Country(2, "Spain"));
-            context.Countries.Add(new Country(3, "Malta"));
-            context.Countries.Add(new Country(4, "United Kingdom"));
-            context.Countries.Add(new Country(5, "USA"));
-            context.Countries.Add(new Country(6, "Germany"));
-            context.Countries.Add(new Country(7, "Norway"));
-            context.Countries.Add(new Country(8, "Russia"));
-        }
 
         private void CreateUser(ApplicationDbContext context, string email, string password)
         {
@@ -106,19 +116,6 @@ namespace StupidChessBase.Data.Migrations
             {
                 throw new Exception(string.Join("; ", userCreateResult.Errors));
             }
-
         }
-
-        private void CreateTournaments(ApplicationDbContext context)
-        {
-            context.Tournaments.Add(new Tournament(1, "Malta Tournament", new DateTime(2000, 5, 1), new DateTime(2000, 5, 7), 2, "First Prize 5000$"));
-            context.Tournaments.Add(new Tournament(2, "Bulgaria Tournament", new DateTime(1995, 5, 1), new DateTime(1995, 5, 10), 2, "First Prize 2000$"));
-            context.Tournaments.Add(new Tournament(3, "Usa Tournament", new DateTime(1990, 5, 1), new DateTime(1990, 5, 6), 2, "First Prize 50000$"));
-            context.Tournaments.Add(new Tournament(4, "United Kingdom Tournament", new DateTime(1999, 5, 1), new DateTime(1999, 5, 5), 2, "First Prize 25000$"));
-            context.Tournaments.Add(new Tournament(5, "Germany Tournament", new DateTime(2017, 5, 24), new DateTime(2017, 5, 30), 2, "First Prize 4500$"));
-            context.Tournaments.Add(new Tournament(6, "France Tournament", new DateTime(2020, 5, 1), new DateTime(2020, 5, 10), 2, "First Prize 7000$"));
-        }
-
-
     }
 }

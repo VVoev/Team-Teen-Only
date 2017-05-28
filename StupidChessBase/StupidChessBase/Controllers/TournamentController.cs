@@ -46,7 +46,14 @@ namespace StupidChessBase.Controllers
         {
             if (model != null && this.ModelState.IsValid)
             {
-                var tournament = new Tournament(10, model.Name, model.StartDate, model.EndDate, model.Rounds, model.Description);
+                var tournament = new Tournament()
+                {
+                    Title = model.Name,
+                    StartDate = model.StartDate,
+                    EndDate = model.EndDate,
+                    Rounds = model.Rounds,
+                    Description = model.Description
+                };
                 this.db.Tournaments.Add(tournament);
                 this.db.SaveChanges();
 

@@ -1,68 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
 using StupidChessBase.Data.Enums;
 
 namespace StupidChessBase.Data.Models
 {
     public class Game
     {
-        private DateTime date;
-        private Result result;
+        public int ID { get; set; }
 
-        public Game(int gameId,
-            int tournamentId,
-            IEnumerable<int> playersId,
-            DateTime date,
-            Result result)
-        {
-            this.GameId = gameId;
-            this.TournamentId = tournamentId;
-            this.PlayersId = playersId;
-            this.Date = date;
-            this.Result = result;
-        }
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime Date { get; set; }
 
-        [Key]
-        public int GameId {get;set;}
+        [Required]
+        public Result Result { get; set; }
 
-        public int TournamentId { get; set; }
+        [Required]
+        public int Round { get; set; }
 
-        [ForeignKey("TournamentId")]
+        [Required]
+        public int Table { get; set; }
+
+        public int TournamentID { get; set; }
+
         public virtual Tournament Tournament { get; set; }
 
-        public IEnumerable<int> PlayersId { get; set; }
-
-        [ForeignKey("PlayersId")]
-        public virtual IEnumerable<PlayerGame> PlayersGames { get; set; }
-
-        [Required]
-        public DateTime Date
-        {
-            get
-            {
-                return date;
-            }
-
-            set
-            {
-                date = value;
-            }
-        }
-
-        [Required]
-        public Result Result
-        {
-            get
-            {
-                return result;
-            }
-
-            set
-            {
-                result = value;
-            }
-        }
+        public virtual ICollection<Player> Players { get; set; }
     }
 }

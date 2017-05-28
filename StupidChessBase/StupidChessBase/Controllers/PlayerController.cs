@@ -14,9 +14,6 @@ namespace StupidChessBase.Controllers
                 FullName = x.FirstName + " " + x.LastName,
                 Rating = x.Rating,
                 Country = x.Country.Name,
-                Wins = x.Wins,
-                Loses = x.Loses,
-                Draws = x.Draws
             });
 
             return View(new PlayersViewModel()

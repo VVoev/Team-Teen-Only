@@ -1,111 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+
+using StupidChessBase.Utils;
 
 namespace StupidChessBase.Data.Models
 {
     public class Tournament
     {
-        private DateTime startDate;
-        private DateTime endDate;
-        private int rounds;
-        private string title;
-        private string description;
+        public int ID { get; set; }
 
-        public Tournament(int tournamentId,
-            string title,
-            DateTime startDate,
-            DateTime endDate,
-            int rounds,
-            string description)
-        {
-            this.TournamentId = tournamentId;
-            this.Title = title;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
-            this.Rounds = rounds;
-            this.Description = description;
-        }
-
-        [Key]
-        public int TournamentId { get; set; }
-
-        public IEnumerable<int> PlayersId { get; set; }
-
-        [ForeignKey("PlayersId")]
-        public virtual IEnumerable<Player> Players { get; set; }
-       
-        [Required]
-        public int Rounds
-        {
-            get
-            {
-                return rounds;
-            }
-
-            set
-            {
-                rounds = value;
-            }
-        }
+        [StringLength(100, ErrorMessage = GlobalConstants.ErrorMessageForStringLength, MinimumLength = 1)]
+        public string Title { get; set; }
 
         [Required]
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
-
-            set
-            {
-                title = value;
-            }
-        }
+        public int Rounds { get; set; }
 
         [Required]
-        public DateTime StartDate
-        {
-            get
-            {
-                return startDate;
-            }
-
-            set
-            {
-                startDate = value;
-            }
-        }
+        [DataType(DataType.Date)]
+        public DateTime StartDate { get; set; }
 
         [Required]
-        public DateTime EndDate
-        {
-            get
-            {
-                return endDate;
-            }
-
-            set
-            {
-                endDate = value;
-            }
-        }
+        [DataType(DataType.Date)]
+        public DateTime EndDate { get; set; }
 
         [Required]
-        public string Description
-        {
-            get
-            {
-                return description;
-            }
+        public string Description { get; set; }
 
-            set
-            {
-                description = value;
-            }
-        }
+        public virtual ICollection<Player> Players { get; set; }
 
+        public virtual ICollection<Game> Games { get; set; }
 
+        public int? CountryID { get; set; }
+
+        public virtual Country Country { get; set; }
     }
 }
