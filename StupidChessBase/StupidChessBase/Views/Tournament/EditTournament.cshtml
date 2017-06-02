@@ -1,15 +1,12 @@
 ﻿@model StupidChessBase.Models.TournamentInputModel
 
-@{
-    ViewBag.Title = "Add Tournament";
-}
 
-@using (Html.BeginForm("AddTournament", "Tournament", FormMethod.Post)) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>@ViewBag.Title</h4>
+        <h4>TournamentInputModel</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -54,9 +51,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add" class="btn btn-info" />
-                @Html.ActionLink("Cancel", "Tournaments", "Tournament", new { @class = "btn btn-danger" })
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

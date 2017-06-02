@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StupidChessBase.Models
 {
-    public class AddTournamentModel
+    public class TournamentInputModel
     {
         [Required]
         [StringLength(200, ErrorMessage = "The {0} must be between {2} and {1} symbols long", MinimumLength = 5)]

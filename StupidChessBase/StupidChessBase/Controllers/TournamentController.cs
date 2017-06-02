@@ -42,7 +42,7 @@ namespace StupidChessBase.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddTournament(AddTournamentModel model)
+        public ActionResult AddTournament(TournamentInputModel model)
         {
             if (model != null && this.ModelState.IsValid)
             {
@@ -61,6 +61,25 @@ namespace StupidChessBase.Controllers
             }
 
             return this.View(model);
+        }
+
+        [HttpGet]
+        public ActionResult EditTournament(int id)
+        {
+            var tournamentToEdit = this.LoadTournament(id);
+            if(tournamentToEdit == null)
+            {
+                //Todo implement notifications
+                return this.RedirectToAction("Tournaments");
+            }
+            return View(tournamentToEdit);
+        }
+
+        private Tournament LoadTournament(int id)
+        {
+            //TODO check if is is admin
+            var tournamentToEdit = this.db.Tournaments.Where(x => x.ID == id).FirstOrDefault();
+            return tournamentToEdit;
         }
     }
 }

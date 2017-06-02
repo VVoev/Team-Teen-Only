@@ -35,6 +35,8 @@
                     <td>
                         @upcomingTournament.Description
                     </td>
+                    @*First param - text, Second param - controller method name;  Third param - Controller name*@
+                    
                 </tr>
 
             }
@@ -117,6 +119,9 @@
                     </td>
                     <td>
                         @passedTournament.Description
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditTournament", "Tournament")
                     </td>
                 </tr>
             }

@@ -16,5 +16,7 @@ namespace StupidChessBase.Models
         public int Rounds { get; set; }
 
         public string Description { get; set; }
+
+  
     }
 }
