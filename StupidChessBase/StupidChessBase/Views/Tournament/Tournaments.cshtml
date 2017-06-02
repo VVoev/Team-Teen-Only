@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Tournaments";
 }
+@*TODO: Refactor*@
 
 <h1 class="tournament-group-heading">Upcoming Tournaments</h1>
 
@@ -16,6 +17,7 @@
                 <th>End</th>
                 <th>Rounds</th>
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
             @foreach (var upcomingTournament in Model.UpcomingTournaments)
             {
@@ -35,8 +37,9 @@
                     <td>
                         @upcomingTournament.Description
                     </td>
-                    @*First param - text, Second param - controller method name;  Third param - Controller name*@
-                    
+                    <td>
+                        @Html.ActionLink("Edit", "EditTournament", new { id = upcomingTournament.Id })
+                    </td>
                 </tr>
 
             }
@@ -60,6 +63,7 @@
                 <th>End</th>
                 <th>Rounds</th>
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
             @foreach (var currentTournament in Model.CurrentTournaments)
             {
@@ -78,6 +82,9 @@
                     </td>
                     <td>
                         @currentTournament.Description
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditTournament", new { id = currentTournament.Id })
                     </td>
                 </tr>
             }
@@ -101,6 +108,7 @@
                 <th>End</th>
                 <th>Rounds</th>
                 <th>Description</th>
+                <th>Actions</th>
             </tr>
             @foreach (var passedTournament in Model.PassedTournaments)
             {
@@ -121,7 +129,7 @@
                         @passedTournament.Description
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditTournament", "Tournament")
+                        @Html.ActionLink("Edit", "EditTournament", new { id = passedTournament.Id })
                     </td>
                 </tr>
             }

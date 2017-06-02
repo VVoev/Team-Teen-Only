@@ -14,13 +14,14 @@ namespace StupidChessBase.Controllers
             var tournaments = this.db.Tournaments
                 .OrderByDescending(x => x.StartDate)
                 .Select(x => new TournamentViewModel()
-            {
-                Name = x.Title,
-                StartDate = x.StartDate,
-                EndDate = x.EndDate,
-                Rounds = x.Rounds,
-                Description = x.Description
-            });
+                {
+                    Name = x.Title,
+                    StartDate = x.StartDate,
+                    EndDate = x.EndDate,
+                    Rounds = x.Rounds,
+                    Description = x.Description,
+                    Id = x.ID
+                });
 
             var upcomingTournaments = tournaments.Where(t => t.StartDate > DateTime.Now);
             var currentTournaments = tournaments.Where(t => t.StartDate < DateTime.Now && t.EndDate > DateTime.Now);
@@ -67,13 +68,47 @@ namespace StupidChessBase.Controllers
         public ActionResult EditTournament(int id)
         {
             var tournamentToEdit = this.LoadTournament(id);
-            if(tournamentToEdit == null)
+            if (tournamentToEdit == null)
             {
                 //Todo implement notifications
                 return this.RedirectToAction("Tournaments");
             }
-            return View(tournamentToEdit);
+
+            var model = new TournamentInputModel
+            {
+                Name = tournamentToEdit.Title,
+                StartDate = tournamentToEdit.StartDate,
+                EndDate = tournamentToEdit.EndDate,
+                Rounds = tournamentToEdit.Rounds,
+                Description = tournamentToEdit.Description
+            };
+            return View(model);
         }
+
+        [HttpPost]
+        public ActionResult EditTournament(int id, TournamentInputModel model)
+        {
+            var tournamentToEdit = this.LoadTournament(id);
+            if (tournamentToEdit == null)
+            {
+                //Todo implement notifications
+                return this.RedirectToAction("Tournaments");
+            }
+
+            if (model != null && this.ModelState.IsValid)
+            {
+                tournamentToEdit.Title = model.Name;
+                tournamentToEdit.StartDate = model.StartDate;
+                tournamentToEdit.EndDate = model.EndDate;
+                tournamentToEdit.Rounds = model.Rounds;
+                tournamentToEdit.Description = model.Description;
+
+                this.db.SaveChanges();
+                return this.RedirectToAction("Tournaments");
+            }
+            return View(model);
+        }
+
 
         private Tournament LoadTournament(int id)
         {

@@ -5,6 +5,8 @@ namespace StupidChessBase.Models
 {
     public class TournamentViewModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         [DataType(DataType.Date)]

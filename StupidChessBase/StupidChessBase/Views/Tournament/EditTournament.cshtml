@@ -1,12 +1,17 @@
 ﻿@model StupidChessBase.Models.TournamentInputModel
 
+@{
+    ViewBag.Title = "EditTournament";
+}
+
+<h2>EditTournament</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TournamentInputModel</h4>
+        <h4>Edit Tournament</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -60,7 +65,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
