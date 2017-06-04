@@ -9,6 +9,11 @@ namespace StupidChessBase.Data.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Enums;
+    using System.Xml;
+    using System.Xml.Linq;
+    using System.Xml.Serialization;
+    using System.IO;
+    using System.Web;
 
     internal sealed class DbMigrationsConfig : DbMigrationsConfiguration<ApplicationDbContext>
     {
@@ -31,24 +36,14 @@ namespace StupidChessBase.Data.Migrations
                 CreateUser(context, "ceco@abv.bg", "123");
             }
 
-            var countries = new List<Country>
+            List<Country> countries = new List<Country>();
+            XmlDocument doc = new XmlDocument();
+            doc.Load(HttpContext.Current.Server.MapPath("~/xmls/countries.xml"));
+
+            foreach (XmlNode node in doc.SelectNodes("//country"))
             {
-                new Country() { Name = "Bulgaria" },
-
-                new Country() { Name = "Spain" },
-
-                new Country() { Name = "Malta" },
-
-                new Country() { Name = "United Kingdom" },
-
-                new Country() { Name = "USA" },
-
-                new Country() { Name = "Germany" },
-
-                new Country() { Name = "Norway" },
-
-                new Country() { Name = "Russia" }
-            };
+                countries.Add(new Country { Name = node.InnerText });
+            }
 
             countries.ForEach(c => context.Countries.AddOrUpdate(n => n.Name, c));
             context.SaveChanges();
@@ -56,15 +51,15 @@ namespace StupidChessBase.Data.Migrations
             var players = new List<Player>
             {
                 new Player() { FirstName = "Magnus", LastName = "Carlsen", BornDate = new DateTime(1990, 11, 30), Gender = Gender.Male, Rating = 2832, CountryID = countries.Single(c => c.Name == "Norway").ID, Games = new List<Game>() },
-                new Player() { FirstName = "Wesley", LastName = "So", BornDate = new DateTime(1993, 10, 9), Gender = Gender.Male, Rating = 2815, CountryID = countries.Single(c => c.Name == "USA").ID, Games = new List<Game>() },
-                new Player() { FirstName = "Vladimir", LastName = "Kramnik", BornDate = new DateTime(1975, 6, 25), Gender = Gender.Male, Rating = 2811, CountryID = countries.Single(c => c.Name == "Russia").ID, Games = new List<Game>() }
+                new Player() { FirstName = "Wesley", LastName = "So", BornDate = new DateTime(1993, 10, 9), Gender = Gender.Male, Rating = 2815, CountryID = countries.Single(c => c.Name == "United States").ID, Games = new List<Game>() },
+                new Player() { FirstName = "Vladimir", LastName = "Kramnik", BornDate = new DateTime(1975, 6, 25), Gender = Gender.Male, Rating = 2811, CountryID = countries.Single(c => c.Name == "Russian Federation").ID, Games = new List<Game>() }
             };
                        
             var tournaments = new List<Tournament>
             {
                 new Tournament() { Title = "Malta Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "Malta tournament", CountryID = countries.Single(c => c.Name == "Malta").ID, Players = new List<Player>() },
             
-                new Tournament() { Title = "USA Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "USA tournament", CountryID = countries.Single(c => c.Name == "USA").ID, Players = new List<Player>() }
+                new Tournament() { Title = "USA Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "USA tournament", CountryID = countries.Single(c => c.Name == "United States").ID, Players = new List<Player>() }
             };
 
             tournaments.ForEach(t => context.Tournaments.AddOrUpdate(tt => tt.Title, t));
