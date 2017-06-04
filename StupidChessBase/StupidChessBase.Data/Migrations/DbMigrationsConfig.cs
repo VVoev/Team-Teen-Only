@@ -4,16 +4,13 @@ namespace StupidChessBase.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
     using System.Collections.Generic;
+    using System.Xml;
+    using System.Web;
 
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Enums;
-    using System.Xml;
-    using System.Xml.Linq;
-    using System.Xml.Serialization;
-    using System.IO;
-    using System.Web;
 
     internal sealed class DbMigrationsConfig : DbMigrationsConfiguration<ApplicationDbContext>
     {

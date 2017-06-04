@@ -290,8 +290,8 @@
     <Content Include="Views\Player\Players.cshtml" />
     <Content Include="Views\Player\Ranklist.cshtml" />
     <Content Include="Views\Tournament\Tournaments.cshtml" />
-    <Content Include="Views\Tournament\AddTournament.cshtml" />
     <Content Include="Views\Tournament\EditTournament.cshtml" />
+    <Content Include="Views\Tournament\AddTournament.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StupidChessBase.Data\StupidChessBase.Data.csproj">

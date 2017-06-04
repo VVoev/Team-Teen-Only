@@ -19,6 +19,7 @@ namespace StupidChessBase.Controllers
                     StartDate = x.StartDate,
                     EndDate = x.EndDate,
                     Rounds = x.Rounds,
+                    Counrty = x.Country.Name,
                     Description = x.Description,
                     Id = x.ID
                 });
@@ -53,6 +54,7 @@ namespace StupidChessBase.Controllers
                     StartDate = model.StartDate,
                     EndDate = model.EndDate,
                     Rounds = model.Rounds,
+                    CountryID = this.db.Countries.Single(c => c.Name == model.Country).ID,
                     Description = model.Description
                 };
                 this.db.Tournaments.Add(tournament);
@@ -80,6 +82,7 @@ namespace StupidChessBase.Controllers
                 StartDate = tournamentToEdit.StartDate,
                 EndDate = tournamentToEdit.EndDate,
                 Rounds = tournamentToEdit.Rounds,
+                Country = tournamentToEdit.Country.Name,
                 Description = tournamentToEdit.Description
             };
             return View(model);
@@ -101,6 +104,7 @@ namespace StupidChessBase.Controllers
                 tournamentToEdit.StartDate = model.StartDate;
                 tournamentToEdit.EndDate = model.EndDate;
                 tournamentToEdit.Rounds = model.Rounds;
+                tournamentToEdit.CountryID = this.db.Countries.Single(c => c.Name == model.Country).ID;
                 tournamentToEdit.Description = model.Description;
 
                 this.db.SaveChanges();

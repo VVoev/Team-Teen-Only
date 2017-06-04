@@ -31,7 +31,7 @@ namespace StupidChessBase.Data.Models
 
         public virtual ICollection<Game> Games { get; set; }
 
-        public int? CountryID { get; set; }
+        public int CountryID { get; set; }
 
         public virtual Country Country { get; set; }
     }

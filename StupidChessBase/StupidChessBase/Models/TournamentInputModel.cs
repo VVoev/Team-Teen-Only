@@ -1,5 +1,10 @@
-﻿using System;
+﻿using StupidChessBase.Controllers;
+using StupidChessBase.Data;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace StupidChessBase.Models
 {
@@ -22,7 +27,11 @@ namespace StupidChessBase.Models
         public int Rounds { get; set; }
 
         [Required]
+        public string Country { get; set; }
+
+        [Required]
         [StringLength(1000, ErrorMessage = "The {0} must be between {2} and {1} symbols long", MinimumLength = 5)]
         public string Description { get; set; }
+        
     }
 }
