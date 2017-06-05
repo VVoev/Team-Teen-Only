@@ -27,10 +27,10 @@
                         @upcomingTournament.Name
                     </th>
                     <td>
-                        @upcomingTournament.StartDate
+                        @upcomingTournament.StartDate.ToShortDateString()
                     </td>
                     <td>
-                        @upcomingTournament.EndDate
+                        @upcomingTournament.EndDate.ToShortDateString()
                     </td>
                     <td>
                         @upcomingTournament.Rounds
@@ -77,10 +77,10 @@
                         @currentTournament.Name
                     </th>
                     <td>
-                        @currentTournament.StartDate
+                        @currentTournament.StartDate.ToShortDateString()
                     </td>
                     <td>
-                        @currentTournament.EndDate
+                        @currentTournament.EndDate.ToShortDateString()
                     </td>
                     <td>
                         @currentTournament.Rounds
@@ -126,10 +126,10 @@
                         @passedTournament.Name
                     </th>
                     <td>
-                        @passedTournament.StartDate
+                        @passedTournament.StartDate.ToShortDateString()
                     </td>
                     <td>
-                        @passedTournament.EndDate
+                        @passedTournament.EndDate.ToShortDateString()
                     </td>
                     <td>
                         @passedTournament.Rounds
