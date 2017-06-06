@@ -39,7 +39,7 @@ namespace StupidChessBase.Data.Migrations
 
             foreach (XmlNode node in doc.SelectNodes("//country"))
             {
-                countries.Add(new Country { Name = node.InnerText });
+                countries.Add(new Country { Name = node.InnerText, Code = node.Attributes["code"].InnerText });
             }
 
             countries.ForEach(c => context.Countries.AddOrUpdate(n => n.Name, c));

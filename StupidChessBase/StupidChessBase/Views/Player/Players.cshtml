@@ -1,6 +1,4 @@
-﻿@model StupidChessBase.Models.PlayersViewModel
-
-@{
+﻿@{
     ViewBag.Title = "Player";
 }
 
@@ -29,7 +27,7 @@
                     <th scope="row">@counter</th>
                     <td>@player.FullName</td>
                     <td>@player.Rating</td>
-                    <td>@player.Country</td>
+                    <td><span class="flag-icon flag-icon-@player.CountryCode"></span> @player.Country</td>
                 </tr>
                 @{ counter++;}
             </tbody>

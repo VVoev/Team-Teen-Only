@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using StupidChessBase.Models;
 
+using StupidChessBase.Models;
 
 namespace StupidChessBase.Controllers
 {
@@ -14,6 +14,7 @@ namespace StupidChessBase.Controllers
                 FullName = x.FirstName + " " + x.LastName,
                 Rating = x.Rating,
                 Country = x.Country.Name,
+                CountryCode = x.Country.Code.ToLower()
             });
 
             return View(new PlayersViewModel()
@@ -29,8 +30,9 @@ namespace StupidChessBase.Controllers
                 {
                     FullName = x.FirstName + " " + x.LastName,
                     Rating = x.Rating,
-                    Country = x.Country.Name
-            });
+                    Country = x.Country.Name,
+                    CountryCode = x.Country.Code.ToLower()
+                });
 
             return View(new PlayersViewModel()
             {

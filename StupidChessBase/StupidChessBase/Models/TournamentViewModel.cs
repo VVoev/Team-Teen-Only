@@ -20,6 +20,8 @@ namespace StupidChessBase.Models
 
         public string Counrty { get; set; }
 
+        public string CounrtyCode { get; set; }
+
         public string Description { get; set; }
 
   

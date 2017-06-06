@@ -1,6 +1,4 @@
-﻿using StupidChessBase.Data.Models;
-
-namespace StupidChessBase.Models
+﻿namespace StupidChessBase.Models
 {
     public class PlayerViewModel
     {
@@ -15,5 +13,8 @@ namespace StupidChessBase.Models
         public int Rating { get; set; }
 
         public string Country { get; set; }
+
+        public string CountryCode { get; set; }
+        
     }
 }

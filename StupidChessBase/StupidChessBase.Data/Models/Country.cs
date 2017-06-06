@@ -8,6 +8,8 @@ namespace StupidChessBase.Data.Models
 
         public string Name { get; set; }
 
+        public string Code { get; set; }
+
         public virtual ICollection<Tournament> Tounaments { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }

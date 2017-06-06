@@ -15,13 +15,14 @@ namespace StupidChessBase.Controllers
                 .OrderByDescending(x => x.StartDate)
                 .Select(x => new TournamentViewModel()
                 {
+                    Id = x.ID,
                     Name = x.Title,
                     StartDate = x.StartDate,
                     EndDate = x.EndDate,
                     Rounds = x.Rounds,
                     Counrty = x.Country.Name,
-                    Description = x.Description,
-                    Id = x.ID
+                    CounrtyCode = x.Country.Code.ToLower(),
+                    Description = x.Description
                 });
 
             var upcomingTournaments = tournaments.Where(t => t.StartDate > DateTime.Now);
