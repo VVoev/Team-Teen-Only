@@ -43,6 +43,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "EditTournament", new { id = upcomingTournament.Id })
+                        @Html.ActionLink("Delete", "DeleteTournament", new { id = upcomingTournament.Id })
                     </td>
                 </tr>
 
@@ -93,6 +94,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "EditTournament", new { id = currentTournament.Id })
+                        @Html.ActionLink("Delete", "DeleteTournament", new { id = currentTournament.Id })
                     </td>
                 </tr>
             }
@@ -142,6 +144,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "EditTournament", new { id = passedTournament.Id })
+                        @Html.ActionLink("Delete", "DeleteTournament", new { id = passedTournament.Id })
                     </td>
                 </tr>
             }

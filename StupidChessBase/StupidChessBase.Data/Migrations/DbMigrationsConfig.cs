@@ -51,11 +51,11 @@ namespace StupidChessBase.Data.Migrations
                 new Player() { FirstName = "Wesley", LastName = "So", BornDate = new DateTime(1993, 10, 9), Gender = Gender.Male, Rating = 2815, CountryID = countries.Single(c => c.Name == "United States").ID, Games = new List<Game>() },
                 new Player() { FirstName = "Vladimir", LastName = "Kramnik", BornDate = new DateTime(1975, 6, 25), Gender = Gender.Male, Rating = 2811, CountryID = countries.Single(c => c.Name == "Russian Federation").ID, Games = new List<Game>() }
             };
-                       
+
             var tournaments = new List<Tournament>
             {
                 new Tournament() { Title = "Malta Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "Malta tournament", CountryID = countries.Single(c => c.Name == "Malta").ID, Players = new List<Player>() },
-            
+
                 new Tournament() { Title = "USA Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "USA tournament", CountryID = countries.Single(c => c.Name == "United States").ID, Players = new List<Player>() }
             };
 

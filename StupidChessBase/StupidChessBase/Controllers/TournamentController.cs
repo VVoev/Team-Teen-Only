@@ -101,7 +101,6 @@ namespace StupidChessBase.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         public ActionResult EditTournament(int id, TournamentInputModel model)
         {
@@ -125,6 +124,45 @@ namespace StupidChessBase.Controllers
                 return this.RedirectToAction("Tournaments");
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteTournament(int id)
+        {
+            var tournamentToDelete = this.LoadTournament(id);
+            if (tournamentToDelete == null)
+            {
+                //Todo implement notifications
+                return this.RedirectToAction("Tournaments");
+            }
+
+            var model = new TournamentInputModel
+            {
+                Name = tournamentToDelete.Title,
+                StartDate = tournamentToDelete.StartDate,
+                EndDate = tournamentToDelete.EndDate,
+                Rounds = tournamentToDelete.Rounds,
+                Country = tournamentToDelete.Country.Name,
+                Description = tournamentToDelete.Description,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost, ActionName("DeleteTournament")]
+        public ActionResult DeleteTournamentConfirmed(int id)
+        {
+            var tournamentToDelete = this.LoadTournament(id);
+            if (tournamentToDelete == null)
+            {
+                //Todo implement notifications
+                return this.RedirectToAction("Tournaments");
+            }
+
+            this.db.Tournaments.Remove(tournamentToDelete);
+            this.db.SaveChanges();
+
+            return this.RedirectToAction("Tournaments");
         }
 
 
