@@ -48,7 +48,6 @@ namespace StupidChessBase.Controllers
 
             return this.View(model);
 
-            
         }
 
         [HttpPost]
