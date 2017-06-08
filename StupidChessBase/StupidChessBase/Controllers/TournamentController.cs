@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Collections.Generic;
+
 using StupidChessBase.Models;
 using StupidChessBase.Data.Models;
 
@@ -8,7 +10,6 @@ namespace StupidChessBase.Controllers
 {
     public class TournamentController : BaseController
     {
-
         public ActionResult Tournaments()
         {
             var tournaments = this.db.Tournaments
@@ -40,7 +41,14 @@ namespace StupidChessBase.Controllers
         [HttpGet]
         public ActionResult AddTournament()
         {
-            return this.View();
+            var model = new TournamentInputModel() { Countries = new List<SelectListItem>() };
+            model.Countries.Add(new SelectListItem() { Text = "Select country ...", Disabled = true, Selected = true });
+
+            FillCountriesInSelectListFromDatabase(model);
+
+            return this.View(model);
+
+            
         }
 
         [HttpPost]
@@ -58,6 +66,7 @@ namespace StupidChessBase.Controllers
                     CountryID = this.db.Countries.Single(c => c.Name == model.Country).ID,
                     Description = model.Description
                 };
+
                 this.db.Tournaments.Add(tournament);
                 this.db.SaveChanges();
 
@@ -84,10 +93,15 @@ namespace StupidChessBase.Controllers
                 EndDate = tournamentToEdit.EndDate,
                 Rounds = tournamentToEdit.Rounds,
                 Country = tournamentToEdit.Country.Name,
-                Description = tournamentToEdit.Description
+                Description = tournamentToEdit.Description,
+                Countries = new List<SelectListItem>()
             };
+
+            FillCountriesInSelectListFromDatabase(model);
+
             return View(model);
         }
+
 
         [HttpPost]
         public ActionResult EditTournament(int id, TournamentInputModel model)
@@ -99,7 +113,7 @@ namespace StupidChessBase.Controllers
                 return this.RedirectToAction("Tournaments");
             }
 
-            if (model != null && this.ModelState.IsValid)
+            if (model != null)
             {
                 tournamentToEdit.Title = model.Name;
                 tournamentToEdit.StartDate = model.StartDate;
@@ -120,6 +134,17 @@ namespace StupidChessBase.Controllers
             //TODO check if is is admin
             var tournamentToEdit = this.db.Tournaments.Where(x => x.ID == id).FirstOrDefault();
             return tournamentToEdit;
+        }
+
+        private void FillCountriesInSelectListFromDatabase(TournamentInputModel model)
+        {
+            foreach (var country in db.Countries)
+            {
+                model.Countries.Add(new SelectListItem()
+                {
+                    Text = country.Name,
+                });
+            }
         }
     }
 }

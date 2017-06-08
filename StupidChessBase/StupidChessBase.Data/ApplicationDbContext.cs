@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
+
 using Microsoft.AspNet.Identity.EntityFramework;
 using StupidChessBase.Data.Models;
-using Microsoft.AspNet.Identity;
-using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace StupidChessBase.Data
 {

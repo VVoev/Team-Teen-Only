@@ -29,6 +29,8 @@ namespace StupidChessBase.Models
         [Required]
         public string Country { get; set; }
 
+        public ICollection<SelectListItem> Countries { get; set; }
+
         [Required]
         [StringLength(1000, ErrorMessage = "The {0} must be between {2} and {1} symbols long", MinimumLength = 5)]
         public string Description { get; set; }

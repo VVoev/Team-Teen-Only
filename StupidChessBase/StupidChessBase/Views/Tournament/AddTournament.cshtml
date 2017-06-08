@@ -1,5 +1,4 @@
 ﻿@model StupidChessBase.Models.TournamentInputModel
-@using StupidChessBase.Data;
 
 @{
     ViewBag.Title = "Add Tournament";
@@ -45,19 +44,10 @@
             </div>
         </div>
 
-        @{
-            ApplicationDbContext db = new ApplicationDbContext();
-            List<SelectListItem> countries = new List<SelectListItem>();
-            countries.Add(new SelectListItem() { Text = "Select country ...", Disabled = true, Selected = true});
-            foreach (var country in db.Countries)
-            {
-                countries.Add(new SelectListItem() { Text = country.Name });
-            }
-        }
         <div class="form-group">
             @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Country, countries, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.Country, Model.Countries, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
             </div>
         </div>
