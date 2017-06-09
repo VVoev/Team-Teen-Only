@@ -1,12 +1,9 @@
 namespace StupidChessBase.Data.Migrations.BestGamesContext
 {
     using Models.PosgtreModels;
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<StupidChessBase.Data.Contexts.BestGamesContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Contexts.BestGamesContext>
     {
         public Configuration()
         {

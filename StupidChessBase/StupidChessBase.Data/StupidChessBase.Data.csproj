@@ -103,6 +103,11 @@
       <DependentUpon>201706091327372_InitialDatabaseCreation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BestGamesContext\Configuration.cs" />
+    <Compile Include="Migrations\Clubs\201706091604407_Initial.cs" />
+    <Compile Include="Migrations\Clubs\201706091604407_Initial.Designer.cs">
+      <DependentUpon>201706091604407_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Clubs\SqlLiteConfig.cs" />
     <Compile Include="Migrations\DbMigrationsConfig.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Game.cs" />
@@ -120,6 +125,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.resx">
       <DependentUpon>201706091327372_InitialDatabaseCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\Clubs\201706091604407_Initial.resx">
+      <DependentUpon>201706091604407_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
