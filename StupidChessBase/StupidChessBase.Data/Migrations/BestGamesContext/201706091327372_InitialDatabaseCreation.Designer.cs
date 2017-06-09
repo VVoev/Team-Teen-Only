@@ -13,7 +13,7 @@ namespace StupidChessBase.Data.Migrations.BestGamesContext
         
         string IMigrationMetadata.Id
         {
-            get { return "201706091046426_InitialDatabaseCreation"; }
+            get { return "201706091327372_InitialDatabaseCreation"; }
         }
         
         string IMigrationMetadata.Source

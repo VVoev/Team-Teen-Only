@@ -11,6 +11,7 @@ namespace StupidChessBase.Data.Migrations.BestGamesContext
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            AutomaticMigrationDataLossAllowed = false;
             MigrationsDirectory = @"Migrations\BestGamesContext";
         }
 
@@ -24,6 +25,8 @@ a4 Qa5 11. Nc3 Qb6 12. Na4 Qb4 13. c3 Qa5 14. b4 Qc7 15. Bf3 Bd7 16. Rc1 Rad8 17
 d2 43. Ne1 Rd1 44. Kg1 Bh6 45. g3 Kg7 46. Nf3 Rxf1+ 47. Kxf1 d3 48. Ne5 d2 49. Ke2 Kf6 50. Nd3 Be3 5
 1. h3 h5 52. Nb2 Bh6 53. Kf3 Ke5 54. Nd1 Kd4 55. Ke2 Bg5 56. Nf2 Kc3 57. g4 hxg4 58. hxg4 Kc2 59. gx
 f5 gxf5 60. Nd1 f4 61. Nf2 Bh4 62. Nd1 Bg3 0-1" });
+
+            context.SaveChanges();
         }
     }
 }

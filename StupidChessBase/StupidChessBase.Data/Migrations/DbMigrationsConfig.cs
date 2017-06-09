@@ -84,7 +84,6 @@ namespace StupidChessBase.Data.Migrations
             context.SaveChanges();
         }
 
-
         private void CreateUser(ApplicationDbContext context, string email, string password)
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
