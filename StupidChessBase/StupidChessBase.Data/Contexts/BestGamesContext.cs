@@ -15,13 +15,9 @@ namespace StupidChessBase.Data.Contexts
         {
         }
 
-
         public static BestGamesContext Create()
         {
             return new BestGamesContext();
         }
-
-
-
     }
 }
