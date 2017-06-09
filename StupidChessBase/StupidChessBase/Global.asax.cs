@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using StupidChessBase.Data.Migrations;
+using StupidChessBase.Data.Contexts;
+//using StupidChessBase.Data.Migrations.BestGamesContext;
 
 namespace StupidChessBase
 {
@@ -12,6 +14,7 @@ namespace StupidChessBase
         protected void Application_Start()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, DbMigrationsConfig>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<BestGamesContext, Configuration>());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
