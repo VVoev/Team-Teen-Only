@@ -14,7 +14,7 @@ namespace StupidChessBase.Data
         public IDbSet<Game> Games { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("SqlServer", throwIfV1Schema: false)
         {
         }
 

@@ -75,6 +75,10 @@
     <Compile Include="Contexts\BestGamesContext.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\Result.cs" />
+    <Compile Include="Migrations\BestGamesContext\201706091046426_InitialDatabaseCreation.cs" />
+    <Compile Include="Migrations\BestGamesContext\201706091046426_InitialDatabaseCreation.Designer.cs">
+      <DependentUpon>201706091046426_InitialDatabaseCreation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BestGamesContext\Configuration.cs" />
     <Compile Include="Migrations\DbMigrationsConfig.cs" />
     <Compile Include="Models\Country.cs" />
@@ -88,6 +92,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\BestGamesContext\201706091046426_InitialDatabaseCreation.resx">
+      <DependentUpon>201706091046426_InitialDatabaseCreation.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

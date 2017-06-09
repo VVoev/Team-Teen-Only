@@ -11,8 +11,8 @@ namespace StupidChessBase.Data.Contexts
 
 
         public BestGamesContext()
-                : base("DefaultConnection", throwIfV1Schema: false)
-            {
+                : base("PostgresDotNet", throwIfV1Schema: false)
+        {
         }
 
 
@@ -21,7 +21,7 @@ namespace StupidChessBase.Data.Contexts
             return new BestGamesContext();
         }
 
-      
-        
+
+
     }
 }
