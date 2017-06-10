@@ -5,12 +5,12 @@ using SQLite.CodeFirst;
 
 namespace StupidChessBase.Data.Contexts
 {
-    public class ClubContext : IdentityDbContext<ApplicationUser>
+    public class ClubContext : DbContext
     {
         public virtual IDbSet<Club> Clubs { get; set; }
 
         public ClubContext()
-                : base("SqliteDb", throwIfV1Schema: false)
+                : base("SqliteDb")
         {
         }
 
@@ -18,11 +18,6 @@ namespace StupidChessBase.Data.Contexts
         {
             var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<ClubContext>(modelBuilder);
             Database.SetInitializer(sqliteConnectionInitializer);
-
-            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
-            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
-            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
-
         }
     }
 }

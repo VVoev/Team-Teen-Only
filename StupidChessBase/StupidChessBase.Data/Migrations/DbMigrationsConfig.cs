@@ -14,10 +14,21 @@ namespace StupidChessBase.Data.Migrations
 
     internal sealed class DbMigrationsConfig : DbMigrationsConfiguration<ApplicationDbContext>
     {
+        private readonly bool pendingMigrations;
+
         public DbMigrationsConfig()
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
+
+            var migrator = new DbMigrator(this);
+            this.pendingMigrations = migrator.GetPendingMigrations().Any();
+
+            if (pendingMigrations)
+            {
+                migrator.Update();
+                Seed(new ApplicationDbContext());
+            }
         }
 
         protected override void Seed(ApplicationDbContext context)

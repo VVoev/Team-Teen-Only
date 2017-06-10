@@ -98,9 +98,9 @@
     <Compile Include="Contexts\ClubContext.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\Result.cs" />
-    <Compile Include="Migrations\201706100807564_Initial.cs" />
-    <Compile Include="Migrations\201706100807564_Initial.Designer.cs">
-      <DependentUpon>201706100807564_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201706101105177_Initial.cs" />
+    <Compile Include="Migrations\201706101105177_Initial.Designer.cs">
+      <DependentUpon>201706101105177_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.cs" />
     <Compile Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.Designer.cs">
@@ -123,8 +123,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706100807564_Initial.resx">
-      <DependentUpon>201706100807564_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706101105177_Initial.resx">
+      <DependentUpon>201706101105177_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.resx">
       <DependentUpon>201706091327372_InitialDatabaseCreation.cs</DependentUpon>
