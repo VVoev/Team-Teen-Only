@@ -98,16 +98,16 @@
     <Compile Include="Contexts\ClubContext.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\Result.cs" />
+    <Compile Include="Migrations\201706100807564_Initial.cs" />
+    <Compile Include="Migrations\201706100807564_Initial.Designer.cs">
+      <DependentUpon>201706100807564_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.cs" />
     <Compile Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.Designer.cs">
       <DependentUpon>201706091327372_InitialDatabaseCreation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BestGamesContext\Configuration.cs" />
-    <Compile Include="Migrations\Clubs\201706091604407_Initial.cs" />
-    <Compile Include="Migrations\Clubs\201706091604407_Initial.Designer.cs">
-      <DependentUpon>201706091604407_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Clubs\SqlLiteConfig.cs" />
+    <Compile Include="Migrations\SqLiteConfig.cs" />
     <Compile Include="Migrations\DbMigrationsConfig.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Game.cs" />
@@ -123,11 +123,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706100807564_Initial.resx">
+      <DependentUpon>201706100807564_Initial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.resx">
       <DependentUpon>201706091327372_InitialDatabaseCreation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\Clubs\201706091604407_Initial.resx">
-      <DependentUpon>201706091604407_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -1,24 +1,28 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using StupidChessBase.Data.Models.SqlLiteModels;
-using StupidChessBase.Data.Migrations.Clubs;
+using SQLite.CodeFirst;
 
 namespace StupidChessBase.Data.Contexts
 {
     public class ClubContext : IdentityDbContext<ApplicationUser>
     {
-        public IDbSet<Club> Clubs { get; set; }
-
+        public virtual IDbSet<Club> Clubs { get; set; }
 
         public ClubContext()
                 : base("SqliteDb", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ClubContext, SqlLiteConfig>(true));
         }
 
-        public static ClubContext Create()
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            return new ClubContext();
+            var sqliteConnectionInitializer = new SqliteCreateDatabaseIfNotExists<ClubContext>(modelBuilder);
+            Database.SetInitializer(sqliteConnectionInitializer);
+
+            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+
         }
     }
 }

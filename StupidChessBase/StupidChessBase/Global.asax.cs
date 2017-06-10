@@ -6,7 +6,7 @@ using System.Web.Routing;
 using StupidChessBase.Data.Migrations;
 using StupidChessBase.Data.Contexts;
 using StupidChessBase.Data.Migrations.BestGamesContext;
-using StupidChessBase.Data.Migrations.Clubs;
+using StupidChessBase.Data.Models.SqlLiteModels;
 
 namespace StupidChessBase
 {
@@ -16,7 +16,9 @@ namespace StupidChessBase
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, DbMigrationsConfig>());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<BestGamesContext, Configuration>());
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ClubContext, SqlLiteConfig>());
+            ClubContext clubs = new ClubContext();
+            clubs.Clubs.Add(new Club() { Name = "Sofia" });
+            clubs.SaveChanges();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
