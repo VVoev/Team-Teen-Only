@@ -64,5 +64,77 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
             controller.WithCallTo(x => x.AddTournament(model))
                  .ShouldRedirectTo(x => x.Tournaments);
         }
+
+        [Test]
+        public void EditTournament_ShouldReturn_WhenValidIdIsPassed()
+        {
+            // Arrange
+            var controller = new TournamentController();
+
+            // Act & Assert
+            controller.WithCallTo(x => x.EditTournament(2))
+                .ShouldRenderDefaultView()
+                .WithModel<TournamentInputModel>();
+        }
+
+        [Test]
+        public void EditTournament_ShouldRedirect_WhenNullIsPassed()
+        {
+            // Arrange
+            var controller = new TournamentController();
+
+            // Act & Assert
+            controller.WithCallTo(x => x.EditTournament(0))
+                 .ShouldRedirectTo(x => x.Tournaments);
+        }
+
+        [Test]
+        public void EditTournamentWithModel_ShouldRedirect_WhenNullIsPassed()
+        {
+            // Arrange
+            var controller = new TournamentController();
+            var model = new TournamentInputModel()
+            {
+                Name = "testTest",
+                StartDate = new DateTime(2015, 1, 18),
+                EndDate = new DateTime(2020, 1, 18),
+                Rounds = 3,
+                Country = "Bulgaria",
+                Description = "TestTestTest"
+            };
+            // Act & Assert
+            controller.WithCallTo(x => x.EditTournament(0,model))
+                 .ShouldRedirectTo(x => x.Tournaments);
+        }
+
+        [Test]
+        public void EditTournamentWithModel_ShouldRedirect_WhenValidDataIsPassed()
+        {
+            // Arrange
+            var controller = new TournamentController();
+            var model = new TournamentInputModel()
+            {
+                Name = "testTest",
+                StartDate = new DateTime(2015, 1, 18),
+                EndDate = new DateTime(2020, 1, 18),
+                Rounds = 3,
+                Country = "Bulgaria",
+                Description = "TestTestTest"
+            };
+            // Act & Assert
+            controller.WithCallTo(x => x.EditTournament(2, model))
+                 .ShouldRedirectTo(x => x.Tournaments);
+        }
+
+        [Test]
+        public void EditTournamentWithModel_ShouldReturn_WhenModelIsNull()
+        {
+            // Arrange
+            var controller = new TournamentController();
+
+            // Act & Assert
+            controller.WithCallTo(x => x.EditTournament(2, null))
+                   .ShouldRenderDefaultView();
+        }
     }
 }
