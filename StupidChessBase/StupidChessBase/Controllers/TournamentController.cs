@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 using StupidChessBase.Models;
 using StupidChessBase.Data.Models;
+using System.IO;
+using Rotativa;
 
 namespace StupidChessBase.Controllers
 {
@@ -165,6 +167,31 @@ namespace StupidChessBase.Controllers
             return this.RedirectToAction("Tournaments");
         }
 
+        [HttpGet]
+        public ActionResult ReportTournament(int id)
+        {
+            var tournamentToReport = this.LoadTournament(id);
+            if (tournamentToReport == null)
+            {
+                //Todo implement notifications
+                return this.RedirectToAction("Tournaments");
+            }
+
+            var model = new TournamentInputModel
+            {
+                Name = tournamentToReport.Title,
+                StartDate = tournamentToReport.StartDate,
+                EndDate = tournamentToReport.EndDate,
+                Rounds = tournamentToReport.Rounds,
+                Country = tournamentToReport.Country.Name,
+                Description = tournamentToReport.Description,
+            };
+
+
+            return new ViewAsPdf(model);// and you are done!
+
+        }
+
 
         private Tournament LoadTournament(int id)
         {
@@ -183,5 +210,7 @@ namespace StupidChessBase.Controllers
                 });
             }
         }
+
     }
+
 }
