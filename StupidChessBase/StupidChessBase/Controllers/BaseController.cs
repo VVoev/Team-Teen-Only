@@ -20,9 +20,10 @@ namespace StupidChessBase.Controllers
         }
         public BaseController(IApplicationDbContext applicationDbContext, IClubContext clubContext)
         {
-                db = applicationDbContext;
-                liteDb = clubContext;
+            db = applicationDbContext;
+            liteDb = clubContext;
         }
+
         protected IEnumerable<PlayerViewModel> GetTopPlayers()
         {
             var players = this.db.Players.OrderByDescending(x => x.Rating).Select(x => new PlayerViewModel()
