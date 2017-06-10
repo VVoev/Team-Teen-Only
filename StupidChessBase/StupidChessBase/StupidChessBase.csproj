@@ -270,6 +270,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IndexViewModels.cs" />
     <Compile Include="Models\TournamentInputModel.cs" />
     <Compile Include="Models\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\ForgotPasswordViewModel.cs" />

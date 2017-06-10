@@ -20,20 +20,19 @@
                     <th class="col-xs-2">Country</th>
                 </tr>
             </thead>
-            @{int counter = 1;}
-            @foreach (var player in Model.PlayersData)
-            {
-                <tbody>
+            <tbody>
+                @{int counter = 1;}
+                @foreach (var player in Model.PlayersData)
+                {
                     <tr>
                         <th scope="row">@counter</th>
                         <td>@player.FullName</td>
                         <td>@player.Rating</td>
                         <td><span class="flag-icon flag-icon-@player.CountryCode"></span> @player.Country</td>
-
                     </tr>
-                    @{ counter++;}
-                </tbody>
-            }
+                    counter++;
+                }
+            </tbody>
         </table>
     </div>
 </body>

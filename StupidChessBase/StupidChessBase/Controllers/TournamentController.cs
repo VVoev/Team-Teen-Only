@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 using StupidChessBase.Models;
 using StupidChessBase.Data.Models;
-using System.IO;
 using Rotativa;
 
 namespace StupidChessBase.Controllers
@@ -14,22 +13,10 @@ namespace StupidChessBase.Controllers
     {
         public ActionResult Tournaments()
         {
-            var tournaments = this.db.Tournaments
-                .OrderByDescending(x => x.StartDate)
-                .Select(x => new TournamentViewModel()
-                {
-                    Id = x.ID,
-                    Name = x.Title,
-                    StartDate = x.StartDate,
-                    EndDate = x.EndDate,
-                    Rounds = x.Rounds,
-                    Counrty = x.Country.Name,
-                    CounrtyCode = x.Country.Code.ToLower(),
-                    Description = x.Description
-                });
+            var tournaments = GetAllTournaments();
 
             var upcomingTournaments = tournaments.Where(t => t.StartDate > DateTime.Now);
-            var currentTournaments = tournaments.Where(t => t.StartDate < DateTime.Now && t.EndDate > DateTime.Now);
+            var currentTournaments = GetCurrentTournaments(tournaments);
             var passedTournaments = tournaments.Where(t => t.EndDate < DateTime.Now);
 
             return this.View(new UpcomingPassedTournamentsViewModel()

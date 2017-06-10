@@ -33,7 +33,7 @@ namespace StupidChessBase.Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            if (!context.Users.Any())
+           if (!context.Users.Any())
             {
                 //Asp.Net Users
                 CreateUser(context, "vlado@abv.bg", "123");

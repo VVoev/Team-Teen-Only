@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using StupidChessBase.Models;
+using System.Web.Mvc;
 
 namespace StupidChessBase.Controllers
 {
@@ -6,7 +7,11 @@ namespace StupidChessBase.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new IndexViewModels()
+            {
+                Players = this.GetTopPlayers(),
+                CurrentTournaments = this.GetCurrentTournaments(this.GetAllTournaments())
+            });    
         }
     }
 }
