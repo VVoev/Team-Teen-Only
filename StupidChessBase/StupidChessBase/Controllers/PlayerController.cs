@@ -1,12 +1,16 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-
 using StupidChessBase.Models;
+using StupidChessBase.Data.Contexts;
 
 namespace StupidChessBase.Controllers
 {
     public class PlayerController : BaseController
     {
+        public PlayerController() : base()
+        { }
+        public PlayerController(IApplicationDbContext applicationDbContext, IClubContext clubContext) : base(applicationDbContext, clubContext)
+        { }
         public ActionResult Ranklist()
         {
             var players = this.db.Players.OrderByDescending(x => x.Rating).Select(x => new PlayerViewModel()

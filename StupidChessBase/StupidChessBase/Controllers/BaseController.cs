@@ -6,7 +6,18 @@ namespace StupidChessBase.Controllers
 {
     public class BaseController : Controller
     {
-        protected ApplicationDbContext db  = new ApplicationDbContext();
-        protected ClubContext liteDb = new ClubContext();
+        public IApplicationDbContext db;
+        public IClubContext liteDb;
+
+        public BaseController()
+        {
+            db = new ApplicationDbContext();
+            liteDb = new ClubContext();
+        }
+        public BaseController(IApplicationDbContext applicationDbContext, IClubContext clubContext)
+        {
+                db = applicationDbContext;
+                liteDb = clubContext;
+        }
     }
 }
