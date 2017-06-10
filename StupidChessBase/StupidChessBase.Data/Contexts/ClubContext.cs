@@ -5,7 +5,7 @@ using SQLite.CodeFirst;
 
 namespace StupidChessBase.Data.Contexts
 {
-    public class ClubContext : DbContext
+    public class ClubContext : DbContext, IClubContext
     {
         public virtual IDbSet<Club> Clubs { get; set; }
 

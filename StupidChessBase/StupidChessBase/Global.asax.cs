@@ -16,7 +16,7 @@ namespace StupidChessBase
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, DbMigrationsConfig>());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<BestGamesContext, Configuration>());
-            ClubContext clubs = new ClubContext();
+            IClubContext clubs = new ClubContext();
             clubs.Clubs.Add(new Club() { Name = "Sofia" });
             clubs.SaveChanges();
             AreaRegistration.RegisterAllAreas();

@@ -3,10 +3,11 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 using Microsoft.AspNet.Identity.EntityFramework;
 using StupidChessBase.Data.Models;
+using StupidChessBase.Data.Contexts;
 
 namespace StupidChessBase.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser> , IApplicationDbContext
     {
         public IDbSet<Player> Players { get; set; }     
         public IDbSet<Tournament> Tournaments { get; set; }

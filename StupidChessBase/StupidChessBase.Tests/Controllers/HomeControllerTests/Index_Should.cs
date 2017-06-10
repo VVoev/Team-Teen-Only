@@ -8,7 +8,7 @@ namespace StupidChessBase.Tests.Controllers.HomeControllerTests
     public class Index_Should
     {
         [Test]
-        public void InitializeView_WhenHomeControllerIsCreated()
+        public void Index_ShouldReturnViewResult_WhenCalled()
         {
             // Arrange
             var controller = new HomeController();
@@ -16,8 +16,9 @@ namespace StupidChessBase.Tests.Controllers.HomeControllerTests
             // Act
             ViewResult result = controller.Index() as ViewResult;
 
+
             // Assert
-            Assert.IsNotNull(result);
+            Assert.IsInstanceOf<ViewResult>(result);
         }
 
     }
