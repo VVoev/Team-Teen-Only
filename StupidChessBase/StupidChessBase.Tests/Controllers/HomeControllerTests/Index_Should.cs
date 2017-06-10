@@ -2,6 +2,7 @@
 using StupidChessBase.Controllers;
 using StupidChessBase.Models;
 using System.Web.Mvc;
+using TestStack.FluentMVCTesting;
 
 namespace StupidChessBase.Tests.Controllers.HomeControllerTests
 {
@@ -15,20 +16,9 @@ namespace StupidChessBase.Tests.Controllers.HomeControllerTests
             var controller = new HomeController();
 
             // Act & Assert
-            Assert.IsInstanceOf<ViewResult>(controller.Index());
-        }
-        [Test]
-        public void Index_ShouldReturnIndexViewModelsTypeModel_WhenCalled()
-        {
-            // Arrange
-            var controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
-
-
-            // Assert
-            Assert.IsInstanceOf<IndexViewModels>(result.Model);
+            controller.WithCallTo(x => x.Index())
+                .ShouldRenderDefaultView()
+                .WithModel<IndexViewModels>();
         }
     }
 }
