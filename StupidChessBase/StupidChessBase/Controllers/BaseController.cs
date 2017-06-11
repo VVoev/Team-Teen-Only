@@ -82,7 +82,7 @@ namespace StupidChessBase.Controllers
             return tournaments;
         }
 
-        protected IEnumerable<TournamentViewModel> GetCurrentTournaments(IEnumerable<TournamentViewModel> allTournaments)
+        public IEnumerable<TournamentViewModel> GetCurrentTournaments(IEnumerable<TournamentViewModel> allTournaments)
         {
             var currentTournaments = allTournaments.Where(t => t.StartDate < DateTime.Now && t.EndDate > DateTime.Now);
 

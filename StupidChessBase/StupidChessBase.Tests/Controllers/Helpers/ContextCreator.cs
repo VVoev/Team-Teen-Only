@@ -62,6 +62,8 @@ namespace StupidChessBase.Tests.Controllers
                         }
             });
 
+            mockedDbContext.Setup(x => x.SaveChanges()).Verifiable();
+
             return mockedDbContext;
         }
     }

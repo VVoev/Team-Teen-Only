@@ -118,12 +118,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaseControllerTests\GetCurrentTournamets_Should.cs" />
     <Compile Include="Controllers\Helpers\ContextCreator.cs" />
     <Compile Include="Controllers\HomeControllerTests\Constructor_Should.cs" />
     <Compile Include="Controllers\PlayerControllerTests\Constructor_Should.cs" />
     <Compile Include="Controllers\PlayerControllerTests\Players_Should.cs" />
     <Compile Include="Controllers\PlayerControllerTests\Ranklist_Should.cs" />
     <Compile Include="Controllers\TournamentControllerTests\Constructor_Should.cs" />
+    <Compile Include="Controllers\TournamentControllerTests\Delete_Should.cs" />
     <Compile Include="Controllers\TournamentControllerTests\Tournaments_Should.cs" />
     <Compile Include="Fakes\FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
