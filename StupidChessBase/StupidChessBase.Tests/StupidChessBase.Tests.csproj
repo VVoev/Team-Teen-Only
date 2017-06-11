@@ -64,6 +64,10 @@
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -124,8 +128,13 @@
     <Compile Include="Controllers\PlayerControllerTests\Constructor_Should.cs" />
     <Compile Include="Controllers\PlayerControllerTests\Players_Should.cs" />
     <Compile Include="Controllers\PlayerControllerTests\Ranklist_Should.cs" />
+    <Compile Include="Controllers\TournamentControllerTests\AddTournament_Should.cs" />
     <Compile Include="Controllers\TournamentControllerTests\Constructor_Should.cs" />
+    <Compile Include="Controllers\TournamentControllerTests\DeleteTournamentConfirmed_Should.cs" />
     <Compile Include="Controllers\TournamentControllerTests\Delete_Should.cs" />
+    <Compile Include="Controllers\TournamentControllerTests\EditWIthModel_Should.cs" />
+    <Compile Include="Controllers\TournamentControllerTests\Edit_Should.cs" />
+    <Compile Include="Controllers\TournamentControllerTests\Report_Should.cs" />
     <Compile Include="Controllers\TournamentControllerTests\Tournaments_Should.cs" />
     <Compile Include="Fakes\FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,8 +142,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Browsers\qt.browser" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

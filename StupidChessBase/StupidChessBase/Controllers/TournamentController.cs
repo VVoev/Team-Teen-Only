@@ -165,7 +165,6 @@ namespace StupidChessBase.Controllers
             var tournamentToReport = this.LoadTournament(id);
             if (tournamentToReport == null)
             {
-                //Todo implement notifications
                 return this.RedirectToAction("Tournaments");
             }
 
@@ -179,9 +178,7 @@ namespace StupidChessBase.Controllers
                 Description = tournamentToReport.Description,
             };
 
-
-            return new ViewAsPdf(model);// and you are done!
-
+            return new ViewAsPdf(model);
         }
 
 

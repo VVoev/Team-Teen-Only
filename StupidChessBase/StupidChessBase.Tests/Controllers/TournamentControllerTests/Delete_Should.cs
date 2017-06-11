@@ -1,5 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
+using Rotativa;
 using StupidChessBase.Controllers;
 using StupidChessBase.Data.Contexts;
 using StupidChessBase.Models;
@@ -14,7 +15,7 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
     public class Delete_Should
     {
         [Test]
-        public void Tournament_ShouldRedirectToTurnament_WhenNullProvided()
+        public void Delete_ShouldRedirectToTurnament_WhenNullProvided()
         {
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
@@ -22,12 +23,12 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
             var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
-            controller.WithCallTo(x => x.EditTournament(33))
+            controller.WithCallTo(x => x.DeleteTournament(33))
                .ShouldRedirectTo(x => x.Tournaments);
         }
 
         [Test]
-        public void Tournament_ShouldRenderDefaultView_WhenCalled()
+        public void Delete_ShouldRenderDefaultView_WhenCalled()
         {
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
@@ -35,40 +36,8 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
             var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
-            controller.WithCallTo(x => x.EditTournament(3))
+            controller.WithCallTo(x => x.DeleteTournament(3))
                 .ShouldRenderDefaultView();
-        }
-
-        [Test]
-        public void Tournament_ShouldRedirectWithoutCallingSaveChanges_WhenCalled()
-        {
-            // Arrange
-            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
-
-            // Act & Assert
-            controller.WithCallTo(x => x.DeleteTournamentConfirmed(33))
-               .ShouldRedirectTo(x => x.Tournaments);
-
-
-            mockedDbContext.Verify(x => x.SaveChanges(), Times.Exactly(0));
-        }
-
-        [Test]
-        public void Tournament_ShouldRedirectWithCallingSaveChanges_WhenCalled()
-        {
-            // Arrange
-            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
-
-            // Act & Assert
-            controller.WithCallTo(x => x.DeleteTournamentConfirmed(3))
-               .ShouldRedirectTo(x => x.Tournaments);
-
-
-            mockedDbContext.Verify(x => x.SaveChanges(), Times.Exactly(1));
         }
     }
 }
