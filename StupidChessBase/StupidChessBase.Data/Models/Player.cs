@@ -7,7 +7,7 @@ using StupidChessBase.Utils;
 
 namespace StupidChessBase.Data.Models
 {
-    public class Player
+    public class Player : IPlayer
     {
         public int ID { get; set; }
 

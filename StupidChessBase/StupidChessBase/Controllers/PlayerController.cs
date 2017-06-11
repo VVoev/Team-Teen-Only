@@ -21,7 +21,7 @@ namespace StupidChessBase.Controllers
 
         public ActionResult Players()
         {
-            var players = this.db.Players.OrderByDescending(x => x.LastName)
+            var players = this.Db.Players.OrderByDescending(x => x.LastName)
                 .Select(x => new PlayerViewModel()
                 {
                     FullName = x.FirstName + " " + x.LastName,

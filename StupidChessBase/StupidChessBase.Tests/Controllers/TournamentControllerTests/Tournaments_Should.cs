@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using StupidChessBase.Controllers;
+using StupidChessBase.Data.Contexts;
 using StupidChessBase.Models;
 using System;
 using System.Linq;
@@ -15,7 +17,9 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         public void Tournament_ShouldReturnUpcomingPassedTournamentsViewModel_WhenCalled()
         {
             // Arrange
-            var controller = new TournamentController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.Tournaments())
@@ -26,7 +30,9 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         public void AddTournament_ShouldReturnTournamentInputModel_WhenCalled()
         {
             // Arrange
-            var controller = new TournamentController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.AddTournament())
@@ -38,7 +44,9 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         public void AddTournament_ShouldReturn_WhenNullIsPassed()
         {
             // Arrange
-            var controller = new TournamentController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.AddTournament(null))
@@ -49,7 +57,9 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         public void AddTournament_ShouldRedirect_WhenTournamentIsPassed()
         {
             // Arrange
-            var controller = new TournamentController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             var model = new TournamentInputModel()
             {
@@ -57,9 +67,10 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
                 StartDate = new DateTime(2015, 1, 18),
                 EndDate = new DateTime(2020, 1, 18),
                 Rounds = 3,
-                Country = "Bulgaria",
+                Country = "Bulgariikata2",
                 Description = "TestTestTest"
             };
+
             // Act & Assert
             controller.WithCallTo(x => x.AddTournament(model))
                  .ShouldRedirectTo(x => x.Tournaments);
@@ -69,10 +80,12 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         public void EditTournament_ShouldReturn_WhenValidIdIsPassed()
         {
             // Arrange
-            var controller = new TournamentController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
-            controller.WithCallTo(x => x.EditTournament(2))
+            controller.WithCallTo(x => x.EditTournament(3))
                 .ShouldRenderDefaultView()
                 .WithModel<TournamentInputModel>();
         }
@@ -81,7 +94,9 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         public void EditTournament_ShouldRedirect_WhenNullIsPassed()
         {
             // Arrange
-            var controller = new TournamentController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.EditTournament(0))
@@ -92,7 +107,11 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         public void EditTournamentWithModel_ShouldRedirect_WhenNullIsPassed()
         {
             // Arrange
-            var controller = new TournamentController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
+
+
             var model = new TournamentInputModel()
             {
                 Name = "testTest",
@@ -111,18 +130,21 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         public void EditTournamentWithModel_ShouldRedirect_WhenValidDataIsPassed()
         {
             // Arrange
-            var controller = new TournamentController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
+
             var model = new TournamentInputModel()
             {
                 Name = "testTest",
                 StartDate = new DateTime(2015, 1, 18),
                 EndDate = new DateTime(2020, 1, 18),
                 Rounds = 3,
-                Country = "Bulgaria",
+                Country = "Bulgariikata2",
                 Description = "TestTestTest"
             };
             // Act & Assert
-            controller.WithCallTo(x => x.EditTournament(2, model))
+            controller.WithCallTo(x => x.EditTournament(3, model))
                  .ShouldRedirectTo(x => x.Tournaments);
         }
 
@@ -130,10 +152,12 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         public void EditTournamentWithModel_ShouldReturn_WhenModelIsNull()
         {
             // Arrange
-            var controller = new TournamentController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
-            controller.WithCallTo(x => x.EditTournament(2, null))
+            controller.WithCallTo(x => x.EditTournament(3, null))
                    .ShouldRenderDefaultView();
         }
     }

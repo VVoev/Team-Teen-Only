@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using StupidChessBase.Controllers;
+using StupidChessBase.Data.Contexts;
 using StupidChessBase.Models;
 using System.Linq;
 using TestStack.FluentMVCTesting;
@@ -13,7 +15,9 @@ namespace StupidChessBase.Tests.Controllers.PlayerControllerTests
         public void Players_ShouldReturnViewResult_WhenCalled()
         {
             // Arrange
-            var controller = new PlayerController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new PlayerController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.Players())

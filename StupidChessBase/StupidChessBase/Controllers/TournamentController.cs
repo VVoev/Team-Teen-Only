@@ -6,11 +6,16 @@ using System.Collections.Generic;
 using StupidChessBase.Models;
 using StupidChessBase.Data.Models;
 using Rotativa;
+using StupidChessBase.Data.Contexts;
 
 namespace StupidChessBase.Controllers
 {
     public class TournamentController : BaseController
     {
+        public TournamentController() : base()
+        { }
+        public TournamentController(IApplicationDbContext applicationDbContext, IClubContext clubContext) : base(applicationDbContext, clubContext)
+        { }
         public ActionResult Tournaments()
         {
             var tournaments = GetAllTournaments();
@@ -51,12 +56,12 @@ namespace StupidChessBase.Controllers
                     StartDate = model.StartDate,
                     EndDate = model.EndDate,
                     Rounds = model.Rounds,
-                    CountryID = this.db.Countries.Single(c => c.Name == model.Country).ID,
+                    CountryID = this.Db.Countries.Single(c => c.Name == model.Country).ID,
                     Description = model.Description
                 };
 
-                this.db.Tournaments.Add(tournament);
-                this.db.SaveChanges();
+                this.Db.Tournaments.Add(tournament);
+                this.Db.SaveChanges();
 
                 return this.RedirectToAction("Tournaments");
             }
@@ -106,10 +111,10 @@ namespace StupidChessBase.Controllers
                 tournamentToEdit.StartDate = model.StartDate;
                 tournamentToEdit.EndDate = model.EndDate;
                 tournamentToEdit.Rounds = model.Rounds;
-                tournamentToEdit.CountryID = this.db.Countries.Single(c => c.Name == model.Country).ID;
+                tournamentToEdit.CountryID = this.Db.Countries.Single(c => c.Name == model.Country).ID;
                 tournamentToEdit.Description = model.Description;
 
-                this.db.SaveChanges();
+                this.Db.SaveChanges();
                 return this.RedirectToAction("Tournaments");
             }
             return View(model);
@@ -148,8 +153,8 @@ namespace StupidChessBase.Controllers
                 return this.RedirectToAction("Tournaments");
             }
 
-            this.db.Tournaments.Remove(tournamentToDelete);
-            this.db.SaveChanges();
+            this.Db.Tournaments.Remove(tournamentToDelete);
+            this.Db.SaveChanges();
 
             return this.RedirectToAction("Tournaments");
         }
@@ -183,13 +188,13 @@ namespace StupidChessBase.Controllers
         private Tournament LoadTournament(int id)
         {
             //TODO check if is is admin
-            var tournamentToEdit = this.db.Tournaments.Where(x => x.ID == id).FirstOrDefault();
+            var tournamentToEdit = this.Db.Tournaments.Where(x => x.ID == id).FirstOrDefault();
             return tournamentToEdit;
         }
 
         private void FillCountriesInSelectListFromDatabase(TournamentInputModel model)
         {
-            foreach (var country in db.Countries)
+            foreach (var country in Db.Countries)
             {
                 model.Countries.Add(new SelectListItem()
                 {

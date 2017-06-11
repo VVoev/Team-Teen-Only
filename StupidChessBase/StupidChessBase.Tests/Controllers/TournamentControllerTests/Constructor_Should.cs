@@ -4,7 +4,7 @@ using StupidChessBase.Controllers;
 using StupidChessBase.Data;
 using StupidChessBase.Data.Contexts;
 
-namespace StupidChessBase.Tests.Controllers.PlayerControllerTests
+namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
 {
     [TestFixture]
 
@@ -15,10 +15,10 @@ namespace StupidChessBase.Tests.Controllers.PlayerControllerTests
         public void Constructor_ShouldCreateController_WhenNoValuesArePassed()
         {
             // Arrange
-            var controller = new PlayerController();
+            var controller = new TournamentController();
 
             // Act & Assert
-            Assert.IsInstanceOf<PlayerController>(controller);
+            Assert.IsInstanceOf<TournamentController>(controller);
             Assert.IsInstanceOf<IApplicationDbContext>(controller.Db);
             Assert.IsInstanceOf<IClubContext>(controller.LiteDb);
         }
@@ -29,10 +29,10 @@ namespace StupidChessBase.Tests.Controllers.PlayerControllerTests
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
             var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new PlayerController(mockedDbContext.Object, mockedLiteDbContext.Object);
+            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
 
             // Act & Assert
-            Assert.IsInstanceOf<PlayerController>(controller);
+            Assert.IsInstanceOf<TournamentController>(controller);
             Assert.AreSame(controller.Db, mockedDbContext.Object);
             Assert.AreSame(controller.LiteDb, mockedLiteDbContext.Object);
         }

@@ -1,6 +1,11 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using StupidChessBase.Controllers;
+using StupidChessBase.Data.Contexts;
+using StupidChessBase.Data.Models;
 using StupidChessBase.Models;
+using StupidChessBase.Tests.Fakes;
+using System;
 using System.Web.Mvc;
 using TestStack.FluentMVCTesting;
 
@@ -13,7 +18,9 @@ namespace StupidChessBase.Tests.Controllers.HomeControllerTests
         public void Index_ShouldReturnViewResult_WhenCalled()
         {
             // Arrange
-            var controller = new HomeController();
+            var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
+            var mockedLiteDbContext = new Mock<IClubContext>();
+            var controller = new HomeController(mockedDbContext.Object,mockedLiteDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.Index())

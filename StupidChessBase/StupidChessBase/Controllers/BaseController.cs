@@ -10,23 +10,49 @@ namespace StupidChessBase.Controllers
 {
     public class BaseController : Controller
     {
-        public IApplicationDbContext db;
-        public IClubContext liteDb;
+        private IApplicationDbContext db;
+        private IClubContext liteDb;
+
+        public IApplicationDbContext Db
+        {
+            get
+            {
+                return db;
+            }
+
+            set
+            {
+                db = value;
+            }
+        }
+
+        public IClubContext LiteDb
+        {
+            get
+            {
+                return liteDb;
+            }
+
+            set
+            {
+                liteDb = value;
+            }
+        }
 
         public BaseController()
         {
-            db = new ApplicationDbContext();
-            liteDb = new ClubContext();
+            Db = new ApplicationDbContext();
+            LiteDb = new ClubContext();
         }
         public BaseController(IApplicationDbContext applicationDbContext, IClubContext clubContext)
         {
-            db = applicationDbContext;
-            liteDb = clubContext;
+            Db = applicationDbContext;
+            LiteDb = clubContext;
         }
 
         protected IEnumerable<PlayerViewModel> GetTopPlayers()
         {
-            var players = this.db.Players.OrderByDescending(x => x.Rating).Select(x => new PlayerViewModel()
+            var players = this.Db.Players.OrderByDescending(x => x.Rating).Select(x => new PlayerViewModel()
             {
                 FullName = x.FirstName + " " + x.LastName,
                 Rating = x.Rating,
@@ -39,7 +65,7 @@ namespace StupidChessBase.Controllers
 
         protected IEnumerable<TournamentViewModel> GetAllTournaments()
         {
-            var tournaments = this.db.Tournaments
+            var tournaments = this.Db.Tournaments
                 .OrderByDescending(x => x.StartDate)
                 .Select(x => new TournamentViewModel()
                 {
