@@ -14,11 +14,17 @@ namespace StupidChessBase
     {
         protected void Application_Start()
         {
+            // SQL SERVER
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, DbMigrationsConfig>());
+
+            //Postgre
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<BestGamesContext, Configuration>());
+
+            //SQLite
             IClubContext clubs = new ClubContext();
             clubs.Clubs.Add(new Club() { Name = "Sofia" });
             clubs.SaveChanges();
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

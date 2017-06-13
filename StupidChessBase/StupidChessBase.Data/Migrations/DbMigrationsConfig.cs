@@ -67,7 +67,9 @@ namespace StupidChessBase.Data.Migrations
             {
                 new Tournament() { Title = "Malta Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "Malta tournament", CountryID = countries.Single(c => c.Name == "Malta").ID, Players = new List<Player>() },
 
-                new Tournament() { Title = "USA Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "USA tournament", CountryID = countries.Single(c => c.Name == "United States").ID, Players = new List<Player>() }
+                new Tournament() { Title = "USA Tournament", StartDate = new DateTime(2000, 5, 1), EndDate = new DateTime(2000, 5, 7), Rounds = 5, Description = "USA tournament", CountryID = countries.Single(c => c.Name == "United States").ID, Players = new List<Player>() },
+
+                new Tournament() { Title = "Bulgarian Championship", StartDate = new DateTime(2017, 6, 10), EndDate = new DateTime(2017, 6, 20), Rounds = 9, Description = "Bulgarian championship", CountryID = countries.Single(c => c.Name == "Bulgaria").ID, Players = new List<Player>() }
             };
 
             tournaments.ForEach(t => context.Tournaments.AddOrUpdate(tt => tt.Title, t));
