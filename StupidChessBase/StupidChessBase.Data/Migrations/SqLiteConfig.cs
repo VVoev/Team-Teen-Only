@@ -7,9 +7,9 @@ namespace StupidChessBase.Data.Migrations
     {
         public SqLiteConfig()
         {
-            SetSqlGenerator("System.Data.SQLite", new SQLiteMigrationSqlGenerator());
-            AutomaticMigrationsEnabled = false;
-            MigrationsDirectory = @"Migrations";
+            this.SetSqlGenerator("System.Data.SQLite", new SQLiteMigrationSqlGenerator());
+            this.AutomaticMigrationsEnabled = false;
+            this.MigrationsDirectory = @"Migrations";
         }
     }
 }

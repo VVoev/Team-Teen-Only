@@ -1,10 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using System.Web.Mvc;
 using StupidChessBase.Data;
 using StupidChessBase.Data.Contexts;
-using System.Linq;
 using StupidChessBase.Models;
-using System.Collections.Generic;
-using System;
 
 namespace StupidChessBase.Controllers
 {
@@ -13,16 +14,28 @@ namespace StupidChessBase.Controllers
         private IApplicationDbContext db;
         private IClubContext liteDb;
 
+        public BaseController()
+        {
+            this.Db = new ApplicationDbContext();
+            this.LiteDb = new ClubContext();
+        }
+
+        public BaseController(IApplicationDbContext applicationDbContext, IClubContext clubContext)
+        {
+            this.Db = applicationDbContext;
+            this.LiteDb = clubContext;
+        }
+
         public IApplicationDbContext Db
         {
             get
             {
-                return db;
+                return this.db;
             }
 
             set
             {
-                db = value;
+                this.db = value;
             }
         }
 
@@ -30,24 +43,20 @@ namespace StupidChessBase.Controllers
         {
             get
             {
-                return liteDb;
+                return this.liteDb;
             }
 
             set
             {
-                liteDb = value;
+                this.liteDb = value;
             }
         }
 
-        public BaseController()
+        public IEnumerable<TournamentViewModel> GetCurrentTournaments(IEnumerable<TournamentViewModel> allTournaments)
         {
-            Db = new ApplicationDbContext();
-            LiteDb = new ClubContext();
-        }
-        public BaseController(IApplicationDbContext applicationDbContext, IClubContext clubContext)
-        {
-            Db = applicationDbContext;
-            LiteDb = clubContext;
+            var currentTournaments = allTournaments.Where(t => t.StartDate < DateTime.Now && t.EndDate > DateTime.Now);
+
+            return currentTournaments;
         }
 
         protected IEnumerable<PlayerViewModel> GetTopPlayers()
@@ -80,13 +89,6 @@ namespace StupidChessBase.Controllers
                 });
 
             return tournaments;
-        }
-
-        public IEnumerable<TournamentViewModel> GetCurrentTournaments(IEnumerable<TournamentViewModel> allTournaments)
-        {
-            var currentTournaments = allTournaments.Where(t => t.StartDate < DateTime.Now && t.EndDate > DateTime.Now);
-
-            return currentTournaments;
         }
     }
 }

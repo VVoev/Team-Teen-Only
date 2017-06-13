@@ -15,12 +15,11 @@ namespace StupidChessBase.Data.Migrations
                     Name = c.String(maxLength: 2147483647),
                 })
                 .PrimaryKey(t => t.Id);
-
         }
 
         public override void Down()
         {
-            DropTable("dbo.Clubs");
+            this.DropTable("dbo.Clubs");
         }
     }
 }

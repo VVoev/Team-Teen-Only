@@ -1,19 +1,25 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using StupidChessBase.Models;
 using StupidChessBase.Data.Contexts;
+using StupidChessBase.Models;
 
 namespace StupidChessBase.Controllers
 {
     public class PlayerController : BaseController
     {
-        public PlayerController() : base()
-        { }
-        public PlayerController(IApplicationDbContext applicationDbContext, IClubContext clubContext) : base(applicationDbContext, clubContext)
-        { }
+        public PlayerController()
+            : base()
+        {
+        }
+
+        public PlayerController(IApplicationDbContext applicationDbContext, IClubContext clubContext) 
+            : base(applicationDbContext, clubContext)
+        {
+        }
+
         public ActionResult Ranklist()
         {
-            return View(new PlayersViewModel()
+            return this.View(new PlayersViewModel()
             {
                 PlayersData = this.GetTopPlayers()
             });
@@ -30,7 +36,7 @@ namespace StupidChessBase.Controllers
                     CountryCode = x.Country.Code.ToLower()
                 });
 
-            return View(new PlayersViewModel()
+            return this.View(new PlayersViewModel()
             {
                 PlayersData = players
             });

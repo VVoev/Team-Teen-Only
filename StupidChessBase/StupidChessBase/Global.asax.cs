@@ -1,10 +1,10 @@
-﻿using StupidChessBase.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using StupidChessBase.Data.Migrations;
+using StupidChessBase.Data;
 using StupidChessBase.Data.Contexts;
+using StupidChessBase.Data.Migrations;
 using StupidChessBase.Data.Migrations.BestGamesContext;
 using StupidChessBase.Data.Models.SqlLiteModels;
 

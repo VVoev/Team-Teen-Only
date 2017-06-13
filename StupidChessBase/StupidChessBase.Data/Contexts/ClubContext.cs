@@ -7,12 +7,12 @@ namespace StupidChessBase.Data.Contexts
 {
     public class ClubContext : DbContext, IClubContext
     {
-        public virtual IDbSet<Club> Clubs { get; set; }
-
         public ClubContext()
                 : base("SqliteDb")
         {
         }
+
+        public virtual IDbSet<Club> Clubs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

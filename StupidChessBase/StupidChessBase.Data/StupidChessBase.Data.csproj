@@ -92,12 +92,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationUser.cs" />
+    <Compile Include="ApplicationUser.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Contexts\ApplicationDbContext.cs" />
     <Compile Include="Contexts\BestGamesContext.cs" />
     <Compile Include="Contexts\ClubContext.cs" />
-    <Compile Include="Contexts\IApplicationDbContext.cs" />
-    <Compile Include="Contexts\IClubContext.cs" />
+    <Compile Include="Contexts\Contracts\IApplicationDbContext.cs" />
+    <Compile Include="Contexts\Contracts\IClubContext.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\Result.cs" />
     <Compile Include="Migrations\201706101105177_Initial.cs" />

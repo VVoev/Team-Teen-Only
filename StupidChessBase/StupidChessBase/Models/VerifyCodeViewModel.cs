@@ -11,7 +11,6 @@ namespace StupidChessBase.Models
         [Required]
         public string Provider { get; set; }
 
-
         [Required]
         [Display(Name = "Code")]
 

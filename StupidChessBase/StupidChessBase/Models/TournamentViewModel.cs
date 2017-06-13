@@ -1,5 +1,4 @@
-﻿using StupidChessBase.Data.Models;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace StupidChessBase.Models
@@ -23,7 +22,5 @@ namespace StupidChessBase.Models
         public string CounrtyCode { get; set; }
 
         public string Description { get; set; }
-
-  
     }
 }

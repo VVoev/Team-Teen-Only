@@ -1,21 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Collections.Generic;
-
-using StupidChessBase.Models;
-using StupidChessBase.Data.Models;
 using Rotativa;
 using StupidChessBase.Data.Contexts;
+using StupidChessBase.Data.Models;
+using StupidChessBase.Models;
 
 namespace StupidChessBase.Controllers
 {
     public class TournamentController : BaseController
     {
-        public TournamentController() : base()
-        { }
-        public TournamentController(IApplicationDbContext applicationDbContext, IClubContext clubContext) : base(applicationDbContext, clubContext)
-        { }
+        public TournamentController()
+            : base()
+        {
+        }
+
+        public TournamentController(IApplicationDbContext applicationDbContext, IClubContext clubContext)
+            : base(applicationDbContext, clubContext)
+        {
+        }
+
         public ActionResult Tournaments()
         {
             var tournaments = GetAllTournaments();
@@ -38,10 +43,9 @@ namespace StupidChessBase.Controllers
             var model = new TournamentInputModel() { Countries = new List<SelectListItem>() };
             model.Countries.Add(new SelectListItem() { Text = "Select country ...", Disabled = true, Selected = true });
 
-            FillCountriesInSelectListFromDatabase(model);
+            this.FillCountriesInSelectListFromDatabase(model);
 
             return this.View(model);
-
         }
 
         [HttpPost]
@@ -90,9 +94,9 @@ namespace StupidChessBase.Controllers
                 Countries = new List<SelectListItem>()
             };
 
-            FillCountriesInSelectListFromDatabase(model);
+            this.FillCountriesInSelectListFromDatabase(model);
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -117,7 +121,8 @@ namespace StupidChessBase.Controllers
                 this.Db.SaveChanges();
                 return this.RedirectToAction("Tournaments");
             }
-            return View(model);
+
+            return this.View(model);
         }
 
         [HttpGet]
@@ -140,7 +145,7 @@ namespace StupidChessBase.Controllers
                 Description = tournamentToDelete.Description,
             };
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost, ActionName("DeleteTournament")]
@@ -181,7 +186,6 @@ namespace StupidChessBase.Controllers
             return new ViewAsPdf(model);
         }
 
-
         private Tournament LoadTournament(int id)
         {
             //TODO check if is is admin
@@ -199,7 +203,5 @@ namespace StupidChessBase.Controllers
                 });
             }
         }
-
     }
-
 }

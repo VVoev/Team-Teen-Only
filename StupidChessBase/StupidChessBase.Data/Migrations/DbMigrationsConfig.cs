@@ -18,16 +18,16 @@ namespace StupidChessBase.Data.Migrations
 
         public DbMigrationsConfig()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
 
             var migrator = new DbMigrator(this);
             this.pendingMigrations = migrator.GetPendingMigrations().Any();
 
-            if (pendingMigrations)
+            if (this.pendingMigrations)
             {
                 migrator.Update();
-                Seed(new ApplicationDbContext());
+                this.Seed(new ApplicationDbContext());
             }
         }
 
@@ -36,12 +36,12 @@ namespace StupidChessBase.Data.Migrations
            if (!context.Users.Any())
             {
                 //Asp.Net Users
-                CreateUser(context, "vlado@abv.bg", "123");
-                CreateUser(context, "test@abv.bg", "123");
-                CreateUser(context, "kiro@abv.bg", "123");
-                CreateUser(context, "ani@abv.bg", "123");
-                CreateUser(context, "vladi@abv.bg", "123");
-                CreateUser(context, "ceco@abv.bg", "123");
+                this.CreateUser(context, "vlado@abv.bg", "123");
+                this.CreateUser(context, "test@abv.bg", "123");
+                this.CreateUser(context, "kiro@abv.bg", "123");
+                this.CreateUser(context, "ani@abv.bg", "123");
+                this.CreateUser(context, "vladi@abv.bg", "123");
+                this.CreateUser(context, "ceco@abv.bg", "123");
             }
 
             List<Country> countries = new List<Country>();
@@ -73,10 +73,9 @@ namespace StupidChessBase.Data.Migrations
             tournaments.ForEach(t => context.Tournaments.AddOrUpdate(tt => tt.Title, t));
             context.SaveChanges();
 
-
             var games = new List<Game>
             {
-                new Game() { Date = new DateTime(2016, 6, 12), Result = Result.Black, TournamentID = tournaments.Single(t => t.Title == "Malta Tournament").ID, Players = new List<Player>(), Table = 1, Round = 1},
+                new Game() { Date = new DateTime(2016, 6, 12), Result = Result.Black, TournamentID = tournaments.Single(t => t.Title == "Malta Tournament").ID, Players = new List<Player>(), Table = 1, Round = 1 },
                 new Game() { Date = new DateTime(2016, 02, 15), Result = Result.White, TournamentID = tournaments.Single(t => t.Title == "USA Tournament").ID, Players = new List<Player>(), Table = 1, Round = 1 }
             };
 

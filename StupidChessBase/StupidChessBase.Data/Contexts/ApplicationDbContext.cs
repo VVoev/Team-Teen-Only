@@ -7,17 +7,20 @@ using StupidChessBase.Data.Contexts;
 
 namespace StupidChessBase.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser> , IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
-        public IDbSet<Player> Players { get; set; }     
-        public IDbSet<Tournament> Tournaments { get; set; }
-        public IDbSet<Country> Countries { get; set; }
-        public IDbSet<Game> Games { get; set; }
-
         public ApplicationDbContext()
             : base("SqlServer", throwIfV1Schema: false)
         {
         }
+
+        public IDbSet<Player> Players { get; set; }     
+
+        public IDbSet<Tournament> Tournaments { get; set; }
+
+        public IDbSet<Country> Countries { get; set; }
+
+        public IDbSet<Game> Games { get; set; }
 
         public static ApplicationDbContext Create()
         {
@@ -34,7 +37,7 @@ namespace StupidChessBase.Data
 
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
-            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId});
+            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
 
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }

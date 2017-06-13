@@ -19,7 +19,7 @@ namespace StupidChessBase.Data.Migrations.BestGamesContext
         
         public override void Down()
         {
-            DropTable("dbo.BestGames");
+            this.DropTable("dbo.BestGames");
         }
     }
 }

@@ -28,7 +28,6 @@ namespace StupidChessBase
                       "~/Scripts/chessboard-0.3.0.min.js",
                       "~/Scripts/InitializeChess.js"));
 
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",

@@ -7,13 +7,12 @@ namespace StupidChessBase.Data.Contexts
 {
     public class BestGamesContext : IdentityDbContext<ApplicationUser>
     {
-        public IDbSet<BestGame> BestGames { get; set; }
-
-
         public BestGamesContext()
                 : base("PostgresDotNet", throwIfV1Schema: false)
         {
         }
+
+        public IDbSet<BestGame> BestGames { get; set; }
 
         public static BestGamesContext Create()
         {

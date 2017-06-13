@@ -37,6 +37,5 @@ namespace StupidChessBase.Data.Models
         public int? CoachID { get; set; }
 
         public virtual Player Coach { get; set; }
-
     }
 }
