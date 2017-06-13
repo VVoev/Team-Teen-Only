@@ -115,8 +115,6 @@
     <Compile Include="Migrations\DbMigrationsConfig.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\Abstractions\IPlayer.cs" />
-    <Compile Include="Models\Abstractions\ICountry.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PosgtreModels\BestGame.cs" />
     <Compile Include="Models\SqlLiteModels\Club.cs" />

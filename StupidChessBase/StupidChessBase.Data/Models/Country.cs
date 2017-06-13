@@ -2,7 +2,7 @@
 
 namespace StupidChessBase.Data.Models
 {
-    public class Country : ICountry
+    public class Country
     {
         public int ID { get; set; }
 
