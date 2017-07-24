@@ -24,20 +24,17 @@ namespace StupidChessBase.Tests.Controllers.HomeControllerTests
             // Act & Assert
             Assert.IsInstanceOf<HomeController>(controller);
             Assert.IsInstanceOf<IApplicationDbContext>(controller.Db);
-            Assert.IsInstanceOf<IClubContext>(controller.LiteDb);
         }
 
         [Test]
         public void Constructor_ShouldCreateController_WhenValuesArePassed()
         {
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new HomeController(mockedDbContext.Object, mockedLiteDbContext.Object);
+            var controller = new HomeController(mockedDbContext.Object);
 
             // Act & Assert
             Assert.IsInstanceOf<HomeController>(controller);
             Assert.AreSame(controller.Db, mockedDbContext.Object);
-            Assert.AreSame(controller.LiteDb, mockedLiteDbContext.Object);
         }
     }
 }

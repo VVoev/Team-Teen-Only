@@ -16,8 +16,7 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         {
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
+            var controller = new TournamentController(mockedDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.AddTournament())
@@ -30,8 +29,7 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         {
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
+            var controller = new TournamentController(mockedDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.AddTournament(null))
@@ -43,8 +41,7 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         {
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
+            var controller = new TournamentController(mockedDbContext.Object);
 
             var model = new TournamentInputModel()
             {

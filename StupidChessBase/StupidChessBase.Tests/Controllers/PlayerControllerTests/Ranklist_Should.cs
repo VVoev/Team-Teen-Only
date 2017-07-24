@@ -15,8 +15,7 @@ namespace StupidChessBase.Tests.Controllers.PlayerControllerTests
         {
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new PlayerController(mockedDbContext.Object, mockedLiteDbContext.Object);
+            var controller = new PlayerController(mockedDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.Ranklist())

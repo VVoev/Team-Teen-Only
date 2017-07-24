@@ -96,28 +96,13 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Contexts\ApplicationDbContext.cs" />
-    <Compile Include="Contexts\BestGamesContext.cs" />
-    <Compile Include="Contexts\ClubContext.cs" />
     <Compile Include="Contexts\Contracts\IApplicationDbContext.cs" />
-    <Compile Include="Contexts\Contracts\IClubContext.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\Result.cs" />
-    <Compile Include="Migrations\201706101105177_Initial.cs" />
-    <Compile Include="Migrations\201706101105177_Initial.Designer.cs">
-      <DependentUpon>201706101105177_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.cs" />
-    <Compile Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.Designer.cs">
-      <DependentUpon>201706091327372_InitialDatabaseCreation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\BestGamesContext\Configuration.cs" />
-    <Compile Include="Migrations\SqLiteConfig.cs" />
     <Compile Include="Migrations\DbMigrationsConfig.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\PosgtreModels\BestGame.cs" />
-    <Compile Include="Models\SqlLiteModels\Club.cs" />
     <Compile Include="Models\Tournament.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\GlobalConstants.cs" />
@@ -125,14 +110,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706101105177_Initial.resx">
-      <DependentUpon>201706101105177_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\BestGamesContext\201706091327372_InitialDatabaseCreation.resx">
-      <DependentUpon>201706091327372_InitialDatabaseCreation.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

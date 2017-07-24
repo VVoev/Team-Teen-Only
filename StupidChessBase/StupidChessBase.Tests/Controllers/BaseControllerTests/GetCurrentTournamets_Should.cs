@@ -1,14 +1,8 @@
-﻿using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using StupidChessBase.Controllers;
-using StupidChessBase.Data.Contexts;
 using StupidChessBase.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestStack.FluentMVCTesting;
 
 namespace StupidChessBase.Tests.Controllers.BaseControllerTests
 {
@@ -20,8 +14,7 @@ namespace StupidChessBase.Tests.Controllers.BaseControllerTests
         {
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new BaseController(mockedDbContext.Object, mockedLiteDbContext.Object);
+            var controller = new BaseController(mockedDbContext.Object);
 
             var validTournament = new TournamentViewModel()
             {

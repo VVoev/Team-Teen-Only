@@ -19,8 +19,7 @@ namespace StupidChessBase.Tests.Controllers.HomeControllerTests
         {
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new HomeController(mockedDbContext.Object,mockedLiteDbContext.Object);
+            var controller = new HomeController(mockedDbContext.Object);
 
             // Act & Assert
             controller.WithCallTo(x => x.Index())

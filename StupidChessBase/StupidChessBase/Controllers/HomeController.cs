@@ -11,8 +11,8 @@ namespace StupidChessBase.Controllers
         {
         }
 
-        public HomeController(IApplicationDbContext applicationDbContext, IClubContext clubContext) 
-            : base(applicationDbContext, clubContext)
+        public HomeController(IApplicationDbContext applicationDbContext) 
+            : base(applicationDbContext)
         {
         }
 

@@ -20,7 +20,6 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
             // Act & Assert
             Assert.IsInstanceOf<TournamentController>(controller);
             Assert.IsInstanceOf<IApplicationDbContext>(controller.Db);
-            Assert.IsInstanceOf<IClubContext>(controller.LiteDb);
         }
 
         [Test]
@@ -28,13 +27,11 @@ namespace StupidChessBase.Tests.Controllers.TournamentControllerTests
         {
             // Arrange
             var mockedDbContext = ContextCreator.CreateMockedApllicationDbContext();
-            var mockedLiteDbContext = new Mock<IClubContext>();
-            var controller = new TournamentController(mockedDbContext.Object, mockedLiteDbContext.Object);
+            var controller = new TournamentController(mockedDbContext.Object);
 
             // Act & Assert
             Assert.IsInstanceOf<TournamentController>(controller);
             Assert.AreSame(controller.Db, mockedDbContext.Object);
-            Assert.AreSame(controller.LiteDb, mockedLiteDbContext.Object);
         }
     }
 }

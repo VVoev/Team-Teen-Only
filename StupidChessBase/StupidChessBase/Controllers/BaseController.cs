@@ -12,18 +12,15 @@ namespace StupidChessBase.Controllers
     public class BaseController : Controller
     {
         private IApplicationDbContext db;
-        private IClubContext liteDb;
 
         public BaseController()
         {
             this.Db = new ApplicationDbContext();
-            this.LiteDb = new ClubContext();
         }
 
-        public BaseController(IApplicationDbContext applicationDbContext, IClubContext clubContext)
+        public BaseController(IApplicationDbContext applicationDbContext)
         {
             this.Db = applicationDbContext;
-            this.LiteDb = clubContext;
         }
 
         public IApplicationDbContext Db
@@ -36,19 +33,6 @@ namespace StupidChessBase.Controllers
             set
             {
                 this.db = value;
-            }
-        }
-
-        public IClubContext LiteDb
-        {
-            get
-            {
-                return this.liteDb;
-            }
-
-            set
-            {
-                this.liteDb = value;
             }
         }
 

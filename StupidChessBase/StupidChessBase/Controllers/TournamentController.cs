@@ -16,8 +16,8 @@ namespace StupidChessBase.Controllers
         {
         }
 
-        public TournamentController(IApplicationDbContext applicationDbContext, IClubContext clubContext)
-            : base(applicationDbContext, clubContext)
+        public TournamentController(IApplicationDbContext applicationDbContext)
+            : base(applicationDbContext)
         {
         }
 
